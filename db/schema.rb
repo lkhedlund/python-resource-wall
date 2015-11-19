@@ -26,23 +26,23 @@ ActiveRecord::Schema.define(version: 20151119021434) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer  "article_id"
     t.integer  "user_id"
+    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
     t.string   "comment"
-    t.integer  "article_id"
     t.integer  "user_id"
+    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer  "article_id"
     t.integer  "user_id"
+    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
