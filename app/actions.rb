@@ -39,11 +39,6 @@ get '/users/new' do
   erb :'users/new'
 end
 
-get '/users/:id' do
-  @user = User.find params[:id]
-  erb :'users/show'
-end
-
 get '/users/signin' do
   erb :'users/signin'
 end
@@ -51,6 +46,11 @@ end
 get '/users/signout' do
   session.clear
   redirect '/articles'
+end
+
+get '/users/:id' do
+  @user = User.find params[:id]
+  erb :'users/show'
 end
 
 post '/articles' do
@@ -77,13 +77,13 @@ post '/users/new' do
 end
 
 post '/users/signin' do
-  user = User.find_by(email: params[:email])
-  if user && user.password == params[:password]
-    session[:user_id] = user.id
+  # user = User.find_by(email: params[:email])
+  # if user && user.password == params[:password]
+    session[:user_id] = params[:user_id]
     redirect '/articles'
-  else
-    redirect '/users/signin'
-  end    
+  # else
+  #   redirect '/users/signin'
+  # end    
 end
 
 post '/like' do
