@@ -93,7 +93,8 @@ post '/users/signin' do
 end
 
 post '/like' do
-  like = Like.create(article_id: params[:article_id],
+  like = Like.create(
+    article_id: params[:article_id],
     user_id: params[:user_id]
   )
   if like.persisted?
@@ -104,7 +105,8 @@ post '/like' do
 end
 
 post '/comment' do
-  comment = Comment.create(article_id: params[:article_id],
+  comment = Comment.create(
+    article_id: params[:article_id],
     user_id: params[:user_id],
     comment: params[:comment]
   )
@@ -116,7 +118,8 @@ post '/comment' do
 end
 
 post '/bookmark' do
-  bookmark = Bookmark.create(article_id: params[:article_id],
+  bookmark = Bookmark.create(
+    article_id: params[:article_id],
     user_id: params[:user_id]
   )
   if bookmark.persisted?
