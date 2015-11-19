@@ -1,7 +1,9 @@
 <div>
   <% @articles.each do |article| %>
     <div>
-      Replace me with the elements that make up an Article's card
+      <h1><%= article.title %></h1>
+      <p><img src="<%= article.image %>">
+      <span class="glyphicon glyphicon-heart"></span>
     </div>
   <% end %>
 </div>
