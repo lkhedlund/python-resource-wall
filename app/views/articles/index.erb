@@ -2,12 +2,16 @@
   <% @articles.each do |article| %>
     <div>
       <h1><%= article.title %></h1>
-      <p><img src="<%= article.image %>">
-      <form method="POST" action="/like">
-        <input type="hidden" name="article_id" value="<%= article.id %>" />
-        <input type="hidden" name="user_id" value="1" />
-        <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
-      </form>
+      <p><img src="<%= article.image %>"></p>
+      <% if User.find(1).hasnt_liked?(article) %> <!-- need to update with current user -->
+        <form method="POST" action="/like">
+          <input type="hidden" name="article_id" value="<%= article.id %>" />
+          <input type="hidden" name="user_id" value="1" /> <!-- need to update with current user -->
+          <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+        </form>
+      <% else %>
+        <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+      <% end %>
     </div>
   <% end %>
 </div>
