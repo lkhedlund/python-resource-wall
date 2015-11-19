@@ -53,15 +53,9 @@ get '/users/signout' do
   redirect '/articles'
 end
 
-post '/articles/new' do
-  article = Article.create(
-    title: params[:title],
-    summary: params[:summary],
-    url: params[:url],
-    image: params[:image],
-    user_id: params[:user_id]
-  )
-  if post.persisted?
+post '/articles' do
+  article = Article.create(params[:article])
+  if article.persisted?
     redirect "/articles/#{article.id}"
   else
     redirect '/articles/new'
