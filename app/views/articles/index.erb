@@ -2,12 +2,17 @@
   <% @articles.each do |article| %>
     <div>
       <h1><%= article.title %></h1>
-      <p><img src="<%= article.image %>">
-      <form method="POST" action="/like">
-        <input type="hidden" name="article_id" value="<%= article.id %>" />
-        <input type="hidden" name="user_id" value="1" />
-        <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
-      </form>
+      <p><img src="<%= article.image %>"></p>
+      <% if current_user.hasnt_liked?(article) %>
+        <form method="POST" action="/like">
+          <input type="hidden" name="article_id" value="<%= article.id %>" />
+          <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+          <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+        </form>
+      <% else %>
+        <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+      <% end %>
+      <a href="#">Likes: <span class="badge"><%= article.likes.count %></span></a>
     </div>
   <% end %>
 </div>
