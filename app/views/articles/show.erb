@@ -1,0 +1,32 @@
+<!-- THIS PAGE DISPLAYS THE INDIVIDUAL ARTICLE'S INFO -->
+
+<div>
+  <%= @article.title %>
+</div>
+
+<div>
+  Posted by: <%= @article.user_id %> | <%= @article.created_at %>
+</div>
+
+<div>
+  <a href="<%= @article.url %>">Link To Article</a>
+  <!-- Logos to share with friends: email, facebook, twitter -->
+</div>
+
+<div>
+  <img src="<%= @article.image %>" alt="<%= @article.title %>" />
+</div> 
+
+<div>
+  <%= @article.summary %>
+</div>
+
+<div>
+  <p>Comments</p>
+</div>
+
+<% @article.comments.each do |comment| %>
+  <div class="article">
+    <h3><%= article.comments %><small>by <%= article.user_id %></small></h3>
+  </div>
+<% end %>
