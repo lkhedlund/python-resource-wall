@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
     message: "Please enter a valid email address." }, uniqueness: { case_sensitive: false }
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, length: {minimum: 6}
+
+  def hasnt_liked?(article)
+    Like.where("user_id = ? AND article_id = ?", self.id, article.id).empty?
+  end
+
 end
