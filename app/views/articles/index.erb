@@ -3,7 +3,11 @@
     <div>
       <h1><%= article.title %></h1>
       <p><img src="<%= article.image %>">
-      <span class="glyphicon glyphicon-heart"></span>
+      <form method="POST" action="/like">
+        <input type="hidden" name="article_id" value="<%= article.id %>" />
+        <input type="hidden" name="user_id" value="1" />
+        <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+      </form>
     </div>
   <% end %>
 </div>
