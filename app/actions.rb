@@ -93,7 +93,6 @@ post '/users/signin' do
 end
 
 post '/like' do
-  binding.pry
   like = Like.create(
     article_id: params[:article_id],
     user_id: params[:user_id]
