@@ -12,6 +12,16 @@
 </head>
 <body>
 <div class="container">
+  <ul class="nav nav-pills nav-justified">
+    <% if current_user %>
+    <li role="username"><%= current_user.username %></li>
+    <li role="new_article"><a href="/articles/new">New Article</a></li>
+    <li role="sign_out"><a href="/users/signout">Sign out</a></li>
+    <% else %>
+    <li role="sign_in"><a href="/users/signin">Sign in</a></li>
+    <li role="sign_up"><a href="/users/signup">Sign up</a></li>
+    <% end %>
+  </ul>
   <%= yield %>
 </div>
 </body>
