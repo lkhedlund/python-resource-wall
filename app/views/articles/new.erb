@@ -1,0 +1,26 @@
+<div>
+  <h1>Post an Article</h1>
+
+  <form method="post" action="/articles">
+    <div>
+      <label for="title">Title: </label>
+      <input id="title" name="article[title]" />
+    </div>
+    <div>
+      <label for="url">URL: </label>
+      <input id="url" name="article[url]" />
+    </div>
+    <div>
+      <label for="image">Image: </label>
+      <input id="image" name="article[image]" />
+    </div>
+    <div>
+      <label for="summary">Summary: </label>
+      <textarea rows="3" col="50" id="summary" name="article[summary]"></textarea>
+    </div>
+    <div>
+      <button>Post</button>
+    </div>
+  </form>
+
+</div>
