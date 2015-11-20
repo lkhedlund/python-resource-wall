@@ -23,9 +23,13 @@
   <!-- 'LIKES' BUTTON -->
   <div>
     <% if current_user && current_user.hasnt_liked?(@article) %>
+<<<<<<< HEAD
+      <form method="POST" action="/articles/<%= @article.id %>/likes">
+=======
       <form method="POST" action="/likes/show">
         <input type="hidden" name="article_id" value="<%= @article.id %>" />
         <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+>>>>>>> master
         <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
         <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
       </form>
@@ -38,11 +42,10 @@
   <!-- USERS POST A COMMENT HERE -->
   <% if current_user %>
     <div class="container-fluid">
-      <form method="post" action="/comments" class="form-inline">
+      <form method="post" action="/articles/<%= @article.id %>/comments" class="form-inline">
         <div class="form-group">
           <button type="submit" class="btn btn-info">Post</button>
         </div>
-        <input type="hidden" name="article_id" value="<%= @article.id %>"/>
         <div class="form-group" class="col-md-12" style="width:70%">
           <textarea class="form-control" rows="2" style="width:100%" id="comment" name="comment" placeholder="Share your thoughts about this article!"></textarea>
         </div>

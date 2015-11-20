@@ -54,7 +54,7 @@ get '/users/:id' do
 end
 
 post '/articles' do
-  article = Article.create(params[:article])
+  article = current_user.articles.create(params[:article])
   if article.persisted?
     redirect "/articles/#{article.id}"
   else
@@ -87,19 +87,26 @@ post '/users/signin/test' do
     redirect '/articles' 
 end
 
-post '/likes' do
-  like = Like.create(
-    article_id: params[:article_id],
-    user_id: current_user.id
-  )
-  if like.persisted?
-    redirect '/articles'
+post "/articles/:article_id/likes" do
+  @article = Article.find params[:article_id]
+  @like = @article.likes.new
+  @like.user = current_user
+  if @like.save
+    redirect back
   else
     # TODO: add flash comment here
-    redirect '/articles'
+    redirect back
   end
 end
 
+<<<<<<< HEAD
+post '/articles/:article_id/comments' do
+  @article = Article.find params[:article_id]
+  @comment = @article.comments.new comment: params[:comment]
+  @comment.user = current_user
+  if @comment.save
+    redirect back
+=======
 post '/likes/show' do
   like = Like.create(
     article_id: params[:article_id],
@@ -121,22 +128,22 @@ post '/comments' do
   )
   if comment.persisted?
     redirect "/articles/#{params[:article_id]}"
+>>>>>>> master
   else
     # TODO: add flash comment here
-    redirect "/articles/#{params[:article_id]}"
+    redirect back
   end
 end
 
-post '/bookmarks' do
-  bookmark = Bookmark.create(
-    article_id: params[:article_id],
-    user_id: current_user.id
-  )
-  if bookmark.persisted?
-    redirect "/articles/#{params[:article_id]}"
+post '/articles/:article_id/bookmarks' do
+  @article = Article.find params[:article_id]
+  @bookmark = @article.bookmarks.new
+  @bookmark.user = current_user
+  if @bookmark.save
+    redirect back
   else
     # TODO: add flash comment here
-    redirect "/articles/#{params[:article_id]}"
+    redirect back
   end
 end
 
