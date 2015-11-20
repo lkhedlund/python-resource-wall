@@ -6,36 +6,34 @@
       <%= @user.username %>
     </a>
     <a href="..." class="list-group-item">PICTURE WILL GO HERE</a>
-    YOUR SCIENCE KLOUT IS:<%=@total_likes %>
+    YOUR SCIENCE KLOUT IS:<%= @total_likes %>
     </div>
   </div>
 
-
-​
       <!-- Nav tabs -->
       <div class="col-md-9">
         <div class="well">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-            <a href="#post" aria-controls="home" role="tab" data-toggle="tab">POSTS</a></li>
+            <a href="#articles" aria-controls="home" role="tab" data-toggle="tab">Articles</a></li>
             <li role="presentation">
-            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">COMMENTS</a></li>
-            <li role="presentation">
-            <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">FAVORITES</a></li>
+            <a href="#bookmarks" aria-controls="bookmarks" role="tab" data-toggle="tab">Bookmarks</a></li>
         
 ​
       <!-- Tab panes -->
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="post">
+            <div role="tabpanel" class="tab-pane active" id="articles">
               <% @user.articles.each do |article| %>
               <%= article.title %>
               <%= article.url %>
               <img src="<%= article.image %>"/>
               <%end%>
             </div>
-            <div role="tabpanel" class="tab-pane" id="profile">
-              <% @user.comments.each do |comment| %>
-              <%= comment.comment %>
+            <div role="tabpanel" class="tab-pane" id="bookmarks">
+              <% @bookmarks.each do |bookmark| %>
+              <%= bookmark.title %>
+              <%= bookmark.url %>
+              <img src="<%= bookmark.image %>"/>
               <%end%>
             </div>
             <div role="tabpanel" class="tab-pane" id="messages">...</div>
