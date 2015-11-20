@@ -18,41 +18,50 @@
 </div>
 
 <div>
-  <% if current_user.hasnt_liked?(@article) %>
+  <% if current_user && current_user.hasnt_liked?(@article) %>
     <form method="POST" action="/likes">
       <input type="hidden" name="article_id" value="<%= @article.id %>" />
       <input type="hidden" name="user_id" value="<%= current_user.id %>" />
       <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+      <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
     </form>
   <% else %>
     <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+    <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
   <% end %>
-  <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
 </div>
 
 <div>
   <%= @article.summary %>
 </div>
 
-<div>
-  <p>Post a comment: </p>
-  <form method="post" action="/comments">
-    <input type="hidden" name="article_id" value="<%= @article.id %>"/>
-    <div>
-      <label for="comment">Comment: </label>
-      <textarea rows="3" col="50" id="comment" name="comment"></textarea>
-    </div>
-    <div>
-      <button>Post</button>
-    </div>
-  </form>
-  <p>Comments</p>
-</div>
-
-<% @article.comments.each do |comment| %>
-  <div class="article">
-    <p>
-      <%= comment.comment %> by <%= comment.user.username %>
-    </p>
+<% if current_user %>
+  <div>
+    <p>Post a comment: </p>
+    <form method="post" action="/comments">
+      <input type="hidden" name="article_id" value="<%= @article.id %>"/>
+      <div>
+        <label for="comment">Comment: </label>
+        <textarea rows="3" col="50" id="comment" name="comment"></textarea>
+      </div>
+      <div>
+        <button>Post</button>
+      </div>
+    </form>
   </div>
 <% end %>
+
+<div>
+  <% if @article.comments.length > 0 %>
+    <p>Comments</p>
+  <% else %>
+    <p>Be the first to add a comment</p>
+  <% end %>
+  <% @article.comments.each do |comment| %>
+    <div class="article">
+      <p>
+        <%= comment.comment %> by <%= comment.user.username %>
+      </p>
+    </div>
+  <% end %>
+</div>
