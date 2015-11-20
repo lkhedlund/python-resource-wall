@@ -99,38 +99,13 @@ post "/articles/:article_id/likes" do
   end
 end
 
-<<<<<<< HEAD
 post '/articles/:article_id/comments' do
   @article = Article.find params[:article_id]
   @comment = @article.comments.new comment: params[:comment]
   @comment.user = current_user
   if @comment.save
     redirect back
-=======
-post '/likes/show' do
-  like = Like.create(
-    article_id: params[:article_id],
-    user_id: current_user.id
-  )
-  if like.persisted?
-    redirect "/articles/#{params[:article_id]}"
   else
-    # TODO: add flash comment here
-    redirect "/articles/#{params[:article_id]}"
-  end
-end
-
-post '/comments' do
-  comment = Comment.create(
-    article_id: params[:article_id],
-    user_id: current_user.id,
-    comment: params[:comment]
-  )
-  if comment.persisted?
-    redirect "/articles/#{params[:article_id]}"
->>>>>>> master
-  else
-    # TODO: add flash comment here
     redirect back
   end
 end
