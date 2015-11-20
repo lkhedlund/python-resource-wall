@@ -1,0 +1,54 @@
+
+<div class="row">
+  <div class="col-md-3 avatar" style=" height: 200px;">
+    <div class="list-group">
+      <a href="#" class="list-group-item disabled">
+      <%= @user.username %>
+    </a>
+    <a href="..." class="list-group-item">PICTURE WILL GO HERE</a>
+    </div>
+  </div>
+
+
+​
+      <!-- Nav tabs -->
+      <div class="col-md-9">
+        <div class="well">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+            <a href="#post" aria-controls="home" role="tab" data-toggle="tab">POSTS</a></li>
+            <li role="presentation">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">COMMENTS</a></li>
+            <li role="presentation">
+            <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">FAVORITES</a></li>
+        
+​
+      <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="post">
+              <% @user.articles.each do |article| %>
+              <%= article.title %>
+              <%= article.url %>
+              <img src="<%= article.image %>"/>
+              <%end%>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+              <% @user.comments.each do |comment| %>
+              <%= comment.comment %>
+              <%end%>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">...</div>
+            <div role="tabpanel" class="tab-pane" id="settings">...</div>
+          </div>
+​          
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+          </button>
+      </div>
+    </div>
+  </div> 
+          </div>
+
