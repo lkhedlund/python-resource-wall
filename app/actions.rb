@@ -6,6 +6,10 @@ helpers do
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def find_bookmark(article_id)
+    Bookmark.where("user_id = ? AND article_id = ?", current_user.id, article_id).limit(1)
+  end
+
 end
 
 before do
@@ -138,8 +142,10 @@ post '/comment/delete' do
   redirect "/articles/#{comment.article_id}"
 end
 
-post '/bookmark/delete' do
-  bookmark = Bookmark.find_by(id: params[:bookmark_id])
-  bookmark.destroy
-  redirect "/articles/#{current_user.id}"
+post '/articles/:article_id/bookmarks/delete' do
+  @article = Article.find params[:article_id]
+  @article = @article.id
+  @bookmark = find_bookmark(@article)
+  @bookmark[0].destroy!
+  redirect back
 end
