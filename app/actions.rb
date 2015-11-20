@@ -86,39 +86,42 @@ post '/users/signin' do
   # end    
 end
 
-post '/like' do
+post '/likes' do
   like = Like.create(
     article_id: params[:article_id],
-    user_id: params[:user_id]
+    user_id: current_user.id
   )
   if like.persisted?
     redirect '/articles'
   else
+    # TODO: add flash comment here
     redirect '/articles'
   end
 end
 
-post '/comment' do
+post '/comments' do
   comment = Comment.create(
     article_id: params[:article_id],
-    user_id: params[:user_id],
+    user_id: current_user.id,
     comment: params[:comment]
   )
   if comment.persisted?
     redirect "/articles/#{params[:article_id]}"
   else
+    # TODO: add flash comment here
     redirect "/articles/#{params[:article_id]}"
   end
 end
 
-post '/bookmark' do
+post '/bookmarks' do
   bookmark = Bookmark.create(
     article_id: params[:article_id],
-    user_id: params[:user_id]
+    user_id: current_user.id
   )
   if bookmark.persisted?
     redirect "/articles/#{params[:article_id]}"
   else
+    # TODO: add flash comment here
     redirect "/articles/#{params[:article_id]}"
   end
 end
