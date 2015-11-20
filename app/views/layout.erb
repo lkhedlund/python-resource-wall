@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
-  <link rel="stylesheet" href="/stylesheets/application.css" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/application.css" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-  <script src="/bootstrap/js/bootstrap.js"></script>
-  <script src="/javascript/application.js"></script>
-  <title></title>
-</head>
-<body>
-<div class="container">
-  <ul class="nav nav-pills nav-justified">
-    <% if current_user %>
-    <li role="username"><a href="#"><%= current_user.username %></a></li>
-    <li role="all_articles"><a href="/articles">All Articles</a></li>
-    <li role="new_article"><a href="/articles/new">New Article</a></li>
-    <li role="sign_out"><a href="/users/signout">Sign out</a></li>
-    <% else %>
-    <li role="sign_in"><a href="/users/signin">Sign in</a></li>
-    <li role="all_articles"><a href="/articles">All Articles</a></li>
-    <li role="sign_up"><a href="/users/new">Sign up</a></li>
-    <% end %>
-  </ul>
-  <%= yield %>
-</div>
-</body>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/javascript/application.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/tracks">Atmosphere</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/articles"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <% unless current_user %>
+              <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+            <% else %>
+              <li><a href="/articles/new"><span class="glyphicon glyphicon-file"></span> Add New Article</a></li>
+              <li><a href="/users/<%= current_user.id %>"><span class="glyphicon glyphicon-user"></span> <%= current_user.username %></a></li>
+              <li><a href="/users/signout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+            <% end %>
+            </ul>
+          </div>
+      </div>
+    </nav>
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
 </html>
