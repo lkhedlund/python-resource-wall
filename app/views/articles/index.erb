@@ -4,9 +4,7 @@
       <h4><%= article.title %></h4>
       <p><a href="/articles/<%= article.id %>"><img src="<%= article.image %>"></a></p>
       <% if current_user && current_user.hasnt_liked?(article) %>
-        <form method="POST" action="/likes">
-          <input type="hidden" name="article_id" value="<%= article.id %>" />
-          <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+        <form method="POST" action="/articles/<%= article.id %>/likes">
           <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
           <a href="#">Likes: <span class="badge"><%= article.likes.count %></span></a>
         </form>
