@@ -1,0 +1,45 @@
+<!-- THIS PAGE DISPLAYS THE INDIVIDUAL ARTICLE'S INFO -->
+
+<div>
+  <%= @article.title %>
+</div>
+
+<div>
+  Posted by: <%= @article.user_id %> | <%= @article.created_at %>
+</div>
+
+<div>
+  <a href="<%= @article.url %>">Link To Article</a>
+  <!-- Logos to share with friends: email, facebook, twitter -->
+</div>
+
+<div>
+  <img src="<%= @article.image %>" alt="<%= @article.title %>" />
+</div> 
+
+<div>
+  <%= @article.summary %>
+</div>
+
+<div>
+  <p>Post a comment: </p>
+  <form method="post" action="/comments">
+    <input type="hidden" name="article_id" value="<%= @article.id %>"/>
+    <div>
+      <label for="comment">Comment: </label>
+      <textarea rows="3" col="50" id="comment" name="comment"></textarea>
+    </div>
+    <div>
+      <button>Post</button>
+    </div>
+  </form>
+</div>
+
+<% @article.comments.each do |comment| %>
+  <div class="article">
+    <p>
+      <%= comment.comment %> by <%= comment.user.username %>
+    </p>
+  </div>
+<% end %>
+
