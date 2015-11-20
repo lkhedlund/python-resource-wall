@@ -62,12 +62,8 @@ post '/articles' do
   end
 end
 
-post '/users/new' do
-  user = User.create(
-    username: params[:username],
-    email: params[:email],
-    password: params[:password]
-  )
+post '/users' do
+  user = User.create(params[:user])
   if user.persisted?
     session[:user_id] = user.id
     redirect '/articles'
@@ -77,13 +73,18 @@ post '/users/new' do
 end
 
 post '/users/signin' do
-  # user = User.find_by(email: params[:email])
-  # if user && user.password == params[:password]
-    session[:user_id] = params[:user_id]
+  user = User.find_by(email: params[:email])
+  if user.email && user.password == params[:password]
+    session[:user_id] = user.id
     redirect '/articles'
-  # else
-  #   redirect '/users/signin'
-  # end    
+  else
+    redirect '/users/signin'
+  end    
+end
+
+post '/users/signin/test' do
+    session[:user_id] = params[:user_id]
+    redirect '/articles' 
 end
 
 post '/likes' do

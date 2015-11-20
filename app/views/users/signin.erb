@@ -1,14 +1,33 @@
-<form method="post" action="/users/signin">
+<form method="post" action="/users/signin/test">
   <input type="hidden" name="user_id" value="1" />
   <button>User ID: 1</button>
 </form>
 
-<form method="post" action="/users/signin">
+<form method="post" action="/users/signin/test">
   <input type="hidden" name="user_id" value="2" />
   <button>User ID: 2</button>
 </form>
 
-<form method="post" action="/users/signin">
+<form method="post" action="/users/signin/test">
   <input type="hidden" name="user_id" value="3" />
   <button>User ID: 3</button>
 </form>
+
+<div>
+  <h1>Sign In</h1>
+
+  <form method="post" action="/users/signin">
+    <div>
+      <label for="email">Email: </label>
+      <input id="email" name="email" />
+    </div>
+    <div>
+      <label for="password">Password: </label>
+      <input type="password" id="password" name="password" />
+    </div>
+    <div>
+      <button>Sign in</button>
+    </div>
+  </form>
+
+</div>

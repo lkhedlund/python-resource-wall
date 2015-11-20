@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
-  <script src="/javascript/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
   <script src="/bootstrap/js/bootstrap.js"></script>
   <script src="/javascript/application.js"></script>
   <title></title>
@@ -21,7 +23,7 @@
     <% else %>
     <li role="sign_in"><a href="/users/signin">Sign in</a></li>
     <li role="all_articles"><a href="/articles">All Articles</a></li>
-    <li role="sign_up"><a href="/users/signup">Sign up</a></li>
+    <li role="sign_up"><a href="/users/new">Sign up</a></li>
     <% end %>
   </ul>
   <%= yield %>
