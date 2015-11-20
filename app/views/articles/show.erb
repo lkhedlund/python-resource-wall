@@ -1,0 +1,45 @@
+<!-- THIS PAGE DISPLAYS THE INDIVIDUAL ARTICLE'S INFO -->
+
+<div>
+  <%= @article.title %>
+</div>
+
+<div>
+  Posted by: <%= @article.user_id %> | <%= @article.created_at %>
+</div>
+
+<div>
+  <a href="<%= @article.url %>">Link To Article</a>
+  <!-- Logos to share with friends: email, facebook, twitter -->
+</div>
+
+<div>
+  <img src="<%= @article.image %>" alt="<%= @article.title %>" />
+</div>
+
+<div>
+  <% if current_user.hasnt_liked?(@article) %>
+    <form method="POST" action="/like">
+      <input type="hidden" name="article_id" value="<%= @article.id %>" />
+      <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+      <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+    </form>
+  <% else %>
+    <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+  <% end %>
+  <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
+</div>
+
+<div>
+  <%= @article.summary %>
+</div>
+
+<div>
+  <p>Comments</p>
+</div>
+
+<% @article.comments.each do |comment| %>
+  <div class="article">
+    <h3><%= article.comments %><small>by <%= article.user_id %></small></h3>
+  </div>
+<% end %>
