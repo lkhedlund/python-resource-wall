@@ -23,7 +23,7 @@
   <!-- 'LIKES' BUTTON -->
   <div>
     <% if current_user && current_user.hasnt_liked?(@article) %>
-      <form method="POST" action="/likes">
+      <form method="POST" action="/likes/show">
         <input type="hidden" name="article_id" value="<%= @article.id %>" />
         <input type="hidden" name="user_id" value="<%= current_user.id %>" />
         <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
