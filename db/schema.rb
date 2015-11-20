@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119021434) do
+ActiveRecord::Schema.define(version: 20151120191301) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
-    t.string   "summary"
+    t.text     "summary"
     t.string   "url"
     t.string   "image"
     t.integer  "likes_count"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20151119021434) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string   "comment"
+    t.text     "comment"
     t.integer  "user_id"
     t.integer  "article_id"
     t.datetime "created_at"

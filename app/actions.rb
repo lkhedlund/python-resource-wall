@@ -49,7 +49,11 @@ get '/users/signout' do
 end
 
 get '/users/:id' do
+  @total_likes = 0
   @user = User.find params[:id]
+  @user.articles.each do |article|
+  @total_likes += article.likes.count
+    end
   erb :'users/show'
 end
 
