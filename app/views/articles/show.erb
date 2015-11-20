@@ -1,67 +1,67 @@
 <!-- THIS PAGE DISPLAYS THE INDIVIDUAL ARTICLE'S INFO -->
-
-<div>
-  <%= @article.title %>
-</div>
-
-<div>
-  Posted by: <%= @article.user_id %> | <%= @article.created_at %>
-</div>
-
-<div>
-  <a href="<%= @article.url %>">Link To Article</a>
-  <!-- Logos to share with friends: email, facebook, twitter -->
-</div>
-
-<div>
-  <img src="<%= @article.image %>" alt="<%= @article.title %>" />
-</div>
-
-<div>
-  <% if current_user && current_user.hasnt_liked?(@article) %>
-    <form method="POST" action="/likes">
-      <input type="hidden" name="article_id" value="<%= @article.id %>" />
-      <input type="hidden" name="user_id" value="<%= current_user.id %>" />
-      <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
-      <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
-    </form>
-  <% else %>
-    <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
-    <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
-  <% end %>
-</div>
-
-<div>
-  <%= @article.summary %>
-</div>
-
-<% if current_user %>
+<div class="container-fluid" id="articlepage">
   <div>
-    <p>Post a comment: </p>
-    <form method="post" action="/comments">
-      <input type="hidden" name="article_id" value="<%= @article.id %>"/>
-      <div>
-        <label for="comment">Comment: </label>
-        <textarea rows="3" col="50" id="comment" name="comment"></textarea>
-      </div>
-      <div>
-        <button>Post</button>
-      </div>
-    </form>
+    <%= @article.title %>
   </div>
-<% end %>
 
-<div>
-  <% if @article.comments.length > 0 %>
-    <p>Comments</p>
-  <% else %>
-    <p>Be the first to add a comment</p>
-  <% end %>
-  <% @article.comments.each do |comment| %>
-    <div class="article">
-      <p>
-        <%= comment.comment %> by <%= comment.user.username %>
-      </p>
+  <div>
+    Posted by: <%= @article.user_id %> | <%= @article.created_at.strftime("%B %d, %Y") %>
+  </div>
+
+  <div>
+    <a href="<%= @article.url %>">Link To Article</a>
+    <!-- Logos to share with friends: email, facebook, twitter -->
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6"><img src="<%= @article.image %>" alt="<%= @article.title %>"/></div>
+      <div class="col-md-6"><%= @article.summary %></div>
+    </div>
+  </div>
+
+  <!-- 'LIKES' BUTTON -->
+  <div>
+    <% if current_user && current_user.hasnt_liked?(@article) %>
+      <form method="POST" action="/likes">
+        <input type="hidden" name="article_id" value="<%= @article.id %>" />
+        <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+        <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+        <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
+      </form>
+    <% else %>
+      <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+      <a href="#">Likes: <span class="badge"><%= @article.likes.count %></span></a>
+    <% end %>
+  </div>
+
+  <!-- USERS POST A COMMENT HERE -->
+  <% if current_user %>
+    <div class="container-fluid">
+      <form method="post" action="/comments" class="form-inline">
+        <div class="form-group">
+          <button type="submit" class="btn btn-info">Post</button>
+        </div>
+        <input type="hidden" name="article_id" value="<%= @article.id %>"/>
+        <div class="form-group" class="col-md-12" style="width:70%">
+          <textarea class="form-control" rows="2" style="width:100%" id="comment" name="comment" placeholder="Share your thoughts about this article!"></textarea>
+        </div>
+      </form>
     </div>
   <% end %>
+
+  <!-- SHOWS USER COMMENTS -->
+  <div>
+    <% if @article.comments.length == 0 %>
+      <p>Be the first to add a comment</p>
+    <% end %>
+    <% @article.comments.each do |comment| %>
+      <table class="table table-striped">
+        <p>
+          <td class="success" width=10%><%= comment.user.username %> </td>
+          <td class="info" ><%= comment.comment %> </td>
+        </p>
+      </table>
+    <% end %>
+  </div>
 </div>
