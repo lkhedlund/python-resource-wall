@@ -1,5 +1,3 @@
-require 'digest'
-
 helpers do
 
   def current_user
@@ -30,6 +28,10 @@ helpers do
     Article.joins(:bookmarks).where(bookmarks: { user_id: current_user.id })
   end
 
+  def url_information
+    OpenGraph.fetch(session[:article_url])
+  end
+
 end
 
 before do
@@ -47,6 +49,12 @@ end
 
 get '/articles/new' do
   erb :'articles/new'
+end
+
+get '/articles/edit' do
+  @url = url_information
+  @url_backup = session[:article_url]
+  erb :'articles/edit'
 end
 
 get '/articles/:id' do
@@ -80,11 +88,17 @@ get '/users/:id' do
 end
 
 post '/articles' do
+  session[:article_url] = params[:url]
+  redirect '/articles/edit'
+end
+
+post '/articles/edit' do
   article = current_user.articles.create(params[:article])
   if article.persisted?
     redirect "/articles/#{article.id}"
+    session[:article_url]
   else
-    redirect '/articles/new'
+    redirect '/articles/edit'
   end
 end
 
@@ -148,11 +162,11 @@ post '/articles/:article_id/bookmarks' do
   end
 end
 
-post '/articles/:article_id/delete' do
-  @article = Article.find_by params[:article_id]
-  @article.destroy!
-  redirect '/articles'
-end
+# post '/articles/:article_id/delete' do
+#   @article = Article.find_by params[:article_id]
+#   @article.destroy!
+#   redirect '/articles'
+# end
 
 post '/articles/:article_id/bookmarks/delete' do
   @article = Article.find params[:article_id]
