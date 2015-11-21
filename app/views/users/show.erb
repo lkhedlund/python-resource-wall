@@ -26,13 +26,15 @@
               <%= article.title %>
               <%= article.url %>
               <p><a href="/articles/<%= article.id %>"><img src="<%= article.image %>"></a></p>
+              comment total = <%=article.comments_count%>
               <%end%>
             </div>
             <div role="tabpanel" class="tab-pane" id="bookmarks">
               <% @bookmarks.each do |bookmark| %>
               <%= bookmark.title %>
               <%= bookmark.url %>
-              <p><a href="/articles/<%= bookmark.id %>"><img src="<%= bookmark.image %>"/></p>
+              <p><a href="/articles/<%= bookmark.id %>"><img src="<%= bookmark.image %>"></a></p>
+              <p>comment total = <%=bookmark.comments_count%></p>
               <%end%>
             </div>
             <div role="tabpanel" class="tab-pane" id="messages">...</div>
