@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
-
+require 'digest/md5'
 require 'active_support/all'
 
 # Load Sinatra Framework (with AR)

@@ -13,4 +13,12 @@ class User < ActiveRecord::Base
     Like.where("user_id = ? AND article_id = ?", self.id, article.id).empty?
   end
 
+  def hasnt_bookmarked?(article)
+    Bookmark.where("user_id = ? AND article_id = ?", self.id, article.id).empty?
+  end
+  def gravitar
+    hash = Digest::MD5.hexdigest(email)
+    image_src = "http://www.gravatar.com/avatar/#{hash}?d=retro"
+  end
+
 end

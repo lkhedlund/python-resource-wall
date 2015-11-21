@@ -1,17 +1,29 @@
-<div>
-  <% @articles.each do |article| %>
-    <div>
-      <h4><%= article.title %></h4>
-      <p><a href="/articles/<%= article.id %>"><img src="<%= article.image %>"></a></p>
-      <% if current_user && current_user.hasnt_liked?(article) %>
-        <form method="POST" action="/articles/<%= article.id %>/likes">
-          <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
-          <a href="#">Likes: <span class="badge"><%= article.likes.count %></span></a>
-        </form>
-      <% else %>
-        <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-heart"></span></button>
-        <a href="#">Likes: <span class="badge"><%= article.likes.count %></span></a>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+  <div class="row">
+    <% @articles.each do |article| %>
+      <div class="col-md-4">
+        <div class="well text-center">
+          <div class="article-card">
+          <a href="/articles/<%= article.id %>"><img src="<%= article.image %>" class="img-responsive" alt="<%=article.title %>"></a>
+          <div class="top"><div class="flex-center"><p><%= article.summary %></p></div></div>
+          </div>
+          <h4><%= article.title %>
+            <% if current_user && current_user.hasnt_liked?(article) %>
+              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
+                <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+              </form>
+            <% else %>
+            <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+            <% end %>
+            <% if current_user && current_user.hasnt_bookmarked?(article) %>
+              <form style="display: inline;" method="POST" action="/articles/<%= @article.id %>/bookmarks">
+                <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+              </form>
+            <% else %>
+             <form style="display: inline;" method="POST" action="/articles/<%= @article.id %>/bookmarks/delete">
+                <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+            <% end %>
+      </div>
+      </div>
+    <% end %>
+  </div>
