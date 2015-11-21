@@ -1,41 +1,94 @@
-<div class="row">
-  <% @articles.each do |article| %>
-    <div class="col-md-4">
-      <div class="well text-center">      
-        <div class="article-card">
-        <img src="<%= article.image %>" alt="<%=article.title %>">
-        <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
-        </div>
-        <h4><%= article.title.truncate(25) %>
-          <% if current_user %>
-            <% if current_user && current_user.hasnt_liked?(article) %>
-              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
-                <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
-              </form>
-            <% else %>
-              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
-                  <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
-              </form>
-            <% end %>
-            <% if current_user && current_user.hasnt_bookmarked?(article) %>
-              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
-                <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
-              </form>
-            <% else %>
-             <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
-                <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
-              </form>
-            <% end %>
-          <% end %></h4>
-          <p>posted by: 
-          <% if current_user %>
-            <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
-            <% else %>
-            <%= User.find(article.user_id).username %>
-            <% end %> 
-            on: <%= article.created_at.strftime("%m/%d/%y") %></p>
-          <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
+<div class="container">
+  <ul class="nav nav-pills margin-bottom-15" role="tablist">
+    <li role="presentation" class="active"><a href="#date" aria-controls="date" role="tab" data-toggle="tab">Order-By Date</a></li>
+    <li role="presentation"><a href="#popularity" aria-controls="popularity" role="tab" data-toggle="tab">Order-By Popularity</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="date">
+      <div class="row">
+        <% @articles.order(created_at: :desc).each do |article| %>
+          <div class="col-md-4">
+            <div class="well text-center">      
+              <div class="article-card">
+              <img src="<%= article.image %>" alt="<%=article.title %>">
+              <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
+              </div>
+              <h4><%= article.title.truncate(20) %>
+                <% if current_user %>
+                  <% if current_user && current_user.hasnt_liked?(article) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% else %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                        <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% end %>
+                  <% if current_user && current_user.hasnt_bookmarked?(article) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% else %>
+                   <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
+                      <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% end %>
+                <% end %></h4>
+                <p>posted by: 
+                <% if current_user %>
+                  <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
+                  <% else %>
+                  <%= User.find(article.user_id).username %>
+                  <% end %> 
+                  on: <%= article.created_at.strftime("%b %d, %Y") %></p>
+                <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  <% end %>
+    <div role="tabpanel" class="tab-pane" id="popularity">
+      <div class="row">
+        <% @articles.order(likes_count: :desc).each do |article| %>
+          <div class="col-md-4">
+            <div class="well text-center">      
+              <div class="article-card">
+              <img src="<%= article.image %>" alt="<%=article.title %>">
+              <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
+              </div>
+              <h4><%= article.title.truncate(20) %>
+                <% if current_user %>
+                  <% if current_user && current_user.hasnt_liked?(article) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% else %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                        <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% end %>
+                  <% if current_user && current_user.hasnt_bookmarked?(article) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% else %>
+                   <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
+                      <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% end %>
+                <% end %></h4>
+                <p>posted by: 
+                <% if current_user %>
+                  <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
+                  <% else %>
+                  <%= User.find(article.user_id).username %>
+                  <% end %> 
+                  on: <%= article.created_at.strftime("%b %d, %Y") %></p>
+                <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  </div>
+  </div>
 </div>
