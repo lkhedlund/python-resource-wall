@@ -170,10 +170,9 @@ post '/articles/:article_id/likes/delete' do
   redirect back
 end
 
-post '/articles/:article_id/comments/delete' do
+post '/articles/:article_id/comments/:comment_id/delete' do
   @article = Article.find params[:article_id]
-  @article = @article.id
-  @comment = find_comment(@article)
-  @comment[0].destroy!
+  @comment = @article.comments.find params[:comment_id]
+  @comment.destroy!
   redirect back
 end

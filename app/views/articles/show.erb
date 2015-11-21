@@ -44,7 +44,7 @@
   <!-- ARTICLE IMAGE AND SUMMARY -->
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6"><img src="<%= @article.image %>" alt="<%= @article.title %>"/></div>
+      <div class="col-md-6" id="articleimage"><img src="<%= @article.image %>" alt="<%= @article.title %>"/></div>
       <div class="col-md-6"><%= @article.summary %></div>
     </div>
   </div>
@@ -75,9 +75,20 @@
             <%= comment.user.username %><br>
             <em><font size="1">Posted <%= comment.user.created_at.strftime("%b %d, %Y")%></font></em>
           </td>
-          <td class="info" >
-            <%= comment.comment %>
-          </td>
+          <% if comment.user_id == current_user.id %>
+            <td class="info" width=75%>
+              <%= comment.comment %>
+            </td>
+            <td width=10%>
+              <form method="post" action="/articles/<%= @article.id %>/comments/<%= comment.id %>/delete">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          <% else %>
+            <td class="info">
+              <%= comment.comment %>
+            </td>
+          <% end %>
         </p>
       </table>
     <% end %>
