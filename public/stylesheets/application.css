@@ -1,3 +1,8 @@
+body {
+  background-image: url("http://imgsrc.hubblesite.org/hu/db/images/hs-2013-11-b-xlarge_web.jpg");
+  background-attachment: fixed;
+}
+
 .ltgray {
   color: #d3d3d3;
 }
