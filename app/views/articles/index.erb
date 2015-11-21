@@ -27,7 +27,7 @@
               </form>
             <% end %>
           <% end %></h4>
-          <p>@<%= current_user.username %> on: <%= article.created_at.strftime("%m/%d/%y") %> - likes: <%= article.likes.count %> - comments: <%= article.comments.count %></p>
+          <p>@<%= User.find(article.user_id).username %> on: <%= article.created_at.strftime("%m/%d/%y") %> - likes: <%= article.likes.count %> - comments: <%= article.comments.count %></p>
       </div>
     </div>
   <% end %>
