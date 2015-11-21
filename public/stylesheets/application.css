@@ -1,0 +1,60 @@
+.ltgray {
+  color: #d3d3d3;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.article-card {
+  vertical-align: middle;
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.article-card img {
+  position: absolute;
+  left: 0;
+}
+
+.top {
+  height: 300px;
+  width: 300px;
+  background-color: #FFFFFF;
+  position: absolute;
+  left: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.top:hover {
+  opacity: 0.8;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  overflow: auto;
+}
+
+.flex-center p {
+  margin: 0;
+  padding: 20px;
+}
+
+.icon-button {
+  border: none;
+  background: transparent;
+  padding: 2px;
+}
