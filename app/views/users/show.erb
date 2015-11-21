@@ -2,15 +2,18 @@
 <div class="row">
   <div class="col-md-3 avatar" style=" height: 200px;">
     <div class="list-group">
-      <a href="#" class="list-group-item disabled">
-      <%= @user.username %>
-    </a>
-  <img src="<%= @user.gravitar%>" class="list-group-item"/>
-   YOUR SCIENCE KLOUT IS:<%=@total_likes %>
+      <div class="list-group-item">
+      <h2><%= @user.username %></h2>
+      <img src="<%= @user.gravitar%>" class="list-group-item" style="width:80%"/>
+    </div>
+  YOUR SCIENCE KLOUT IS:<%=@total_likes %>
   </div>
+  </div>
+
 
       <!-- Nav tabs -->
       <div class="col-md-9">
+      <div class="well">
         <div class="well">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
@@ -22,33 +25,37 @@
       <!-- Tab panes -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="articles">
-              <% @user.articles.each do |article| %>
-              <%= article.title %>
-              <%= article.url %>
-              <p><a href="/articles/<%= article.id %>"><img src="<%= article.image %>"></a></p>
-              comment total = <%=article.comments_count%>
-              <%end%>
+            <% @user.articles.each do |article| %>
+                    <div class="article-card">
+        <a href="/articles/<%= article.id %>"><img src="<%= article.image %>" class="img-responsive" alt="<%=article.title %>"></a>
+          <div class="top"><div class="flex-center"><p><%= article.summary %></p></div></div>              <%end%>
+          </div>
+        </div>
+              
+
             </div>
+            
             <div role="tabpanel" class="tab-pane" id="bookmarks">
               <% @bookmarks.each do |bookmark| %>
               <%= bookmark.title %>
               <%= bookmark.url %>
               <p><a href="/articles/<%= bookmark.id %>"><img src="<%= bookmark.image %>"></a></p>
+
+
               <p>comment total = <%=bookmark.comments_count%></p>
               <%end%>
             </div>
             <div role="tabpanel" class="tab-pane" id="messages">...</div>
             <div role="tabpanel" class="tab-pane" id="settings">...</div>
-          </div>
-​          
-          <button type="button" class="btn btn-default" aria-label="Left Align">
+                      <button type="button" class="btn btn-default" aria-label="Left Align">
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
           </button>
           <button type="button" class="btn btn-default" aria-label="Left Align">
             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
           </button>
-      </div>
-    </div>
-  </div> 
           </div>
+​          
+
+      </div>
+
 
