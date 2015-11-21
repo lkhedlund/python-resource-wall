@@ -6,6 +6,30 @@ helpers do
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def find_bookmark(article_id)
+    Bookmark.where("user_id = ? AND article_id = ?", current_user.id, article_id)
+  end
+
+  def find_comment(article_id)
+    Comment.where("user_id = ? AND article_id = ?", current_user.id, article_id)
+  end
+
+  def find_like(article_id)
+    Like.where("user_id = ? AND article_id = ?", current_user.id, article_id)
+  end
+
+  def total_user_likes(user)
+    total_likes = 0
+    user.articles.each do |article|
+      total_likes += article.likes.count
+    end
+    total_likes
+  end
+
+  def list_bookmarks
+    Article.joins(:bookmarks).where(bookmarks: { user_id: current_user.id })
+  end
+
 end
 
 before do
@@ -50,6 +74,8 @@ end
 
 get '/users/:id' do
   @user = User.find params[:id]
+  @total_likes = total_user_likes(@user)
+  @bookmarks = list_bookmarks
   erb :'users/show'
 end
 
@@ -122,20 +148,32 @@ post '/articles/:article_id/bookmarks' do
   end
 end
 
-post '/articles/delete' do
-  article = Article.find_by(id: params[:article_id])
-  article.destroy
+post '/articles/:article_id/delete' do
+  @article = Article.find_by params[:article_id]
+  @article.destroy!
   redirect '/articles'
 end
 
-post '/comment/delete' do
-  comment = Comment.find_by(id: params[:comment_id])
-  comment.destroy
-  redirect "/articles/#{comment.article_id}"
+post '/articles/:article_id/bookmarks/delete' do
+  @article = Article.find params[:article_id]
+  @article = @article.id
+  @bookmark = find_bookmark(@article)
+  @bookmark[0].destroy!
+  redirect back
 end
 
-post '/bookmark/delete' do
-  bookmark = Bookmark.find_by(id: params[:bookmark_id])
-  bookmark.destroy
-  redirect "/articles/#{current_user.id}"
+post '/articles/:article_id/likes/delete' do
+  @article = Article.find params[:article_id]
+  @article = @article.id
+  @like = find_like(@article)
+  @like[0].destroy!
+  redirect back
+end
+
+post '/articles/:article_id/comments/delete' do
+  @article = Article.find params[:article_id]
+  @article = @article.id
+  @comment = find_comment(@article)
+  @comment[0].destroy!
+  redirect back
 end
