@@ -16,11 +16,11 @@
                 <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
             <% end %>
             <% if current_user && current_user.hasnt_bookmarked?(article) %>
-              <form style="display: inline;" method="POST" action="/articles/<%= @article.id %>/bookmarks">
+              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
                 <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
               </form>
             <% else %>
-             <form style="display: inline;" method="POST" action="/articles/<%= @article.id %>/bookmarks/delete">
+             <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
                 <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
             <% end %>
       </div>
