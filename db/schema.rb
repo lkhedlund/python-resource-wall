@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151120191301) do
-=======
-ActiveRecord::Schema.define(version: 20151120203101) do
->>>>>>> cda4781a83cdbb0430ae5c68961fc1d420d30584
+ActiveRecord::Schema.define(version: 20151121012342) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -58,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151120203101) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bookmarks_count"
   end
 
 end
