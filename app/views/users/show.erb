@@ -5,9 +5,8 @@
       <a href="#" class="list-group-item disabled">
       <%= @user.username %>
     </a>
-    <a href="..." class="list-group-item">PICTURE WILL GO HERE</a>
-    YOUR SCIENCE KLOUT IS:<%= @total_likes %>
-    </div>
+  <img src="<%= @user.gravitar%>" class="list-group-item"/>
+   YOUR SCIENCE KLOUT IS:<%=@total_likes %>
   </div>
 
       <!-- Nav tabs -->
@@ -26,14 +25,14 @@
               <% @user.articles.each do |article| %>
               <%= article.title %>
               <%= article.url %>
-              <img src="<%= article.image %>"/>
+              <p><a href="/articles/<%= article.id %>"><img src="<%= article.image %>"></a></p>
               <%end%>
             </div>
             <div role="tabpanel" class="tab-pane" id="bookmarks">
               <% @bookmarks.each do |bookmark| %>
               <%= bookmark.title %>
               <%= bookmark.url %>
-              <img src="<%= bookmark.image %>"/>
+              <p><a href="/articles/<%= bookmark.id %>"><img src="<%= bookmark.image %>"/></p>
               <%end%>
             </div>
             <div role="tabpanel" class="tab-pane" id="messages">...</div>
