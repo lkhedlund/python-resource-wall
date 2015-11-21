@@ -13,8 +13,9 @@
                 <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
               </form>
             <% else %>
-            <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
-                <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                  <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+              </form>
             <% end %>
             <% if current_user && current_user.hasnt_bookmarked?(article) %>
               <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
@@ -23,8 +24,10 @@
             <% else %>
              <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
                 <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+              </form>
             <% end %>
-          <% end %>
+          <% end %></h4>
+          <p>@<%= current_user.username %> on: <%= article.created_at.strftime("%m/%d/%y") %> - likes: <%= article.likes.count %> - comments: <%= article.comments.count %></p>
       </div>
     </div>
   <% end %>
