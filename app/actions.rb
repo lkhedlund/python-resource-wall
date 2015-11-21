@@ -11,7 +11,11 @@ helpers do
   end
 
   def find_comment(article_id)
-    Bookmark.where("user_id = ? AND article_id = ?", current_user.id, article_id)
+    Comment.where("user_id = ? AND article_id = ?", current_user.id, article_id)
+  end
+
+  def find_like(article_id)
+    Like.where("user_id = ? AND article_id = ?", current_user.id, article_id)
   end
 
   def total_user_likes(user)
@@ -155,6 +159,14 @@ post '/articles/:article_id/bookmarks/delete' do
   @article = @article.id
   @bookmark = find_bookmark(@article)
   @bookmark[0].destroy!
+  redirect back
+end
+
+post '/articles/:article_id/likes/delete' do
+  @article = Article.find params[:article_id]
+  @article = @article.id
+  @like = find_like(@article)
+  @like[0].destroy!
   redirect back
 end
 
