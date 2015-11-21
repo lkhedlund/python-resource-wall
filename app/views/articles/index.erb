@@ -3,8 +3,8 @@
     <div class="col-md-4">
       <div class="well text-center">
         <div class="article-card">
-        <a href="/articles/<%= article.id %>"><img src="<%= article.image %>" class="img-responsive" alt="<%=article.title %>"></a>
-        <div class="top"><div class="flex-center"><p><%= article.summary %></p></div></div>
+        <img src="<%= article.image %>" class="img-responsive" alt="<%=article.title %>">
+        <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary %></p></div></div></a>
         </div>
         <h4><%= article.title %>
           <% if current_user && current_user.hasnt_liked?(article) %>
