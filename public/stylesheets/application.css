@@ -26,6 +26,10 @@
   transform: translateX(-50%);
 }
 
+#articleimage img {
+  width: 100%;
+}
+
 .top {
   height: 300px;
   width: 300px;
