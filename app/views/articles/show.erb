@@ -1,4 +1,5 @@
 <!-- THIS PAGE DISPLAYS THE INDIVIDUAL ARTICLE'S INFO -->
+
 <div class="container-fluid" id="articlepage">
   <div>
     <h1><%= @article.title %><h1>
@@ -6,7 +7,7 @@
 
   <div class="container-fluid">
     <div>
-      <h5> Posted by: <%= @article.user.username %> | <%= @article.created_at.strftime("%B %d, %Y") %> | <a href="<%= @article.url %>">Link To Article</a></h5>
+      <h5> Posted by: <a href="/users/<%= @article.user_id %>"><%= @article.user.username %></a> | <%= @article.created_at.strftime("%B %d, %Y") %> | <a href="<%= @article.url %>">Link To Article</a></h5>
     </div>
 
     <div class="row">
@@ -15,7 +16,7 @@
       <div class="col-md-1" style="height:40px">
         <% if current_user && current_user.hasnt_bookmarked?(@article) %>
           <form method="POST" action="/articles/<%= @article.id %>/bookmarks">
-            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-bookmark"></span></button>
+            <button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-bookmark"></span></button>
           </form>
         <% else %>
           <form method="POST" action="/articles/<%= @article.id %>/bookmarks/delete">
@@ -28,7 +29,7 @@
       <div class="col-md-2">
         <% if current_user && current_user.hasnt_liked?(@article) %>
           <form method="POST" action="/articles/<%= @article.id %>/likes">
-            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
+            <button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-heart"></span></button>
             <span>Likes: <span class="badge"><%= @article.likes.count %></span></span>
           </form>
         <% else %>
@@ -71,17 +72,20 @@
     <% @article.comments.each do |comment| %>
       <table class="table table-striped">
         <p>
+          <td class="success" width=5%>
+            <a href="/users/<%= comment.user_id %>"><img style="width:100%" src="<%= comment.user.gravitar %>"/></a>
+          </td>
           <td class="success" width=15%>
-            <%= comment.user.username %><br>
+            <a href="/users/<%= comment.user_id %>"><%= comment.user.username %></a><br>
             <em><font size="1">Posted <%= comment.user.created_at.strftime("%b %d, %Y")%></font></em>
           </td>
           <% if comment.user_id == current_user.id %>
-            <td class="info" width=75%>
+            <td class="info" width=70%>
               <%= comment.comment %>
             </td>
-            <td width=10%>
+            <td class="info" width=10%>
               <form method="post" action="/articles/<%= @article.id %>/comments/<%= comment.id %>/delete">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
               </form>
             </td>
           <% else %>
