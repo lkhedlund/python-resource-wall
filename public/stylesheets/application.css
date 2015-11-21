@@ -11,16 +11,19 @@
 }
 
 .article-card {
-  vertical-align: middle;
   position: relative;
   height: 300px;
   width: 300px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .article-card img {
   position: absolute;
-  left: 0;
+  height: 100%;
+  min-width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .top {
