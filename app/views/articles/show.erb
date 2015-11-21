@@ -71,8 +71,13 @@
     <% @article.comments.each do |comment| %>
       <table class="table table-striped">
         <p>
-          <td class="success" width=15%><%= comment.user.username %> </td>
-          <td class="info" ><%= comment.comment %> </td>
+          <td class="success" width=15%>
+            <%= comment.user.username %><br>
+            <em><font size="1">Posted <%= comment.user.created_at.strftime("%b %d, %Y")%></font></em>
+          </td>
+          <td class="info" >
+            <%= comment.comment %>
+          </td>
         </p>
       </table>
     <% end %>
