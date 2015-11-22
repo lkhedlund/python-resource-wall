@@ -1,33 +1,41 @@
-<form method="post" action="/users/signin/test">
-  <input type="hidden" name="user_id" value="1" />
-  <button>User ID: 1</button>
-</form>
-
-<form method="post" action="/users/signin/test">
-  <input type="hidden" name="user_id" value="2" />
-  <button>User ID: 2</button>
-</form>
-
-<form method="post" action="/users/signin/test">
-  <input type="hidden" name="user_id" value="3" />
-  <button>User ID: 3</button>
-</form>
-
-<div class="container ltgray">
-  <h1>Sign In</h1>
-
-  <form role="form" method="post" action="/users/signin">
-    <div class="form-group">
-      <label for="email">Email: </label>
-      <input class="form-control" id="email" name="email" />
-    </div>
-    <div class="form-group">
-      <label for="password">Password: </label>
-      <input class="form-control" type="password" id="password" name="password" />
-    </div>
-    <div>
-      <button class="btn btn-success">Sign in</button>
-    </div>
+<div class="row">
+  <form class="col-md-1 col-md-offset-4" method="post" action="/users/signin/test">
+    <input type="hidden" name="user_id" value="1" />
+    <button class="btn btn-info">User ID: 1</button>
   </form>
 
+  <form class="col-md-1" method="post" action="/users/signin/test">
+    <input type="hidden" name="user_id" value="2" />
+    <button class="btn btn-info">User ID: 2</button>
+  </form>
+
+  <form class="col-md-1" method="post" action="/users/signin/test">
+    <input type="hidden" name="user_id" value="3" />
+    <button class="btn btn-info">User ID: 3</button>
+  </form>
+
+  <form class="col-md-1" method="post" action="/users/signin/test">
+    <input type="hidden" name="user_id" value="4" />
+    <button class="btn btn-info">User ID: 4</button>
+  </form>
+
+</div>
+
+<div class="row ltgray">
+  <div class="col-md-4 col-md-offset-4">
+    <h1>Sign In</h1>
+    <form role="form" method="post" action="/users/signin">
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input class="form-control" id="email" name="email" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password: </label>
+        <input class="form-control" type="password" id="password" name="password" />
+      </div>
+      <div>
+        <button class="btn btn-info">Sign in</button>
+      </div>
+    </form>
+  </div>
 </div>

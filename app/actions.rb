@@ -5,7 +5,9 @@ helpers do
   end
 
   def redirects_non_user
-    redirect '/articles' unless current_user && request.path == '/' || request.path == '/users/new' || request.path == '/users/signin' || request.path == '/articles' || request.path =~ /\/articles\/\d+/
+    if !current_user
+      redirect '/articles' unless request.path == '/' || request.path == '/users' || request.path == '/users/new' || request.path == '/users/signin' || request.path == '/users/signin/test' || request.path == '/articles' || request.path =~ /\/articles\/\d+/
+    end
   end
 
   def find_bookmark(article_id)
