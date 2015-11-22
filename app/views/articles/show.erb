@@ -1,20 +1,28 @@
 <div class="container">
-  <div class="row">
-    <h1><%= @article.title %></h1>
+<div class="row">
+  <div class="col-md-5">
+    <img src="<%= @article.image %>" class="img-responsive" style="width: 100%;" alt="<%=@article.title %>">
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <img src="<%= @article.image %>" class="img-responsive" alt="<%=@article.title %>" style="width: 100%">
+  <div class="col-md-7">
+    <h1 style="margin-top: 0px; margin-bottom: 10px;"><%= @article.title %></h1>
+    <div class="row">
+      <div class="col-md-2"><img src="<%= @article.user.gravitar %>" class="img-responsive" style="width: 100%;"></div>
+      <div class="col-md-8">
+        Posted By: <%= @article.user.username %>
+      <div>
+        <%= @article.created_at.strftime("%B %d, %Y") %>
+      </div>
+      <div>
+        <a href="#">Link to Full Article</a>
+      </div>
+      <div>
+        <a href="#">Like Count | Comment Count</a>
+      </div>
+      <div>
+        <h4>Article Summary</h4>
+        <h5><%= @article.summary %></h5>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Posted by: <a href="/users/<%= @article.user_id %>"><%= @article.user.username %></a> | <%= @article.created_at.strftime("%B %d, %Y") %> | <a href="<%= @article.url %>"><span class="glyphicon glyphicon-link"></span>Link To Article</a></h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h5><%= @article.summary %></h5>
-    </div>
-  </div>
+</div>
 </div>

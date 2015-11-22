@@ -8,11 +8,11 @@
       <div class="row">
         <% @articles.order(created_at: :desc).each do |article| %>
           <div class="col-md-4">
-            <div class="well text-center">      
-              <div class="article-card">
-              <img src="<%= article.image %>" alt="<%=article.title %>">
-              <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
-              </div>
+            <div class="well text-center">
+              <a href="/articles/<%= article.id %>">
+              <div class="square" style="background-image:url('<%= article.image %>')">
+              <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(200) %></p></div></div>
+              </div></a>
               <h4><%= article.title.truncate(20) %>
                 <% if current_user %>
                   <% if current_user && current_user.hasnt_liked?(article) %>
@@ -51,11 +51,11 @@
       <div class="row">
         <% @articles.order(likes_count: :desc).each do |article| %>
           <div class="col-md-4">
-            <div class="well text-center">      
-              <div class="article-card">
-              <img src="<%= article.image %>" alt="<%=article.title %>">
-              <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
-              </div>
+            <div class="well text-center">
+              <a href="/articles/<%= article.id %>">
+              <div class="square" style="background-image:url('<%= article.image %>')">
+              <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(200) %></p></div></div>
+              </div></a>
               <h4><%= article.title.truncate(20) %>
                 <% if current_user %>
                   <% if current_user && current_user.hasnt_liked?(article) %>
