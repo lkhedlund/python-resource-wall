@@ -4,6 +4,10 @@ helpers do
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def redirects_non_user
+    redirect '/articles' unless current_user && request.path == '/' || request.path == '/users/new' || request.path == '/users/signin' || request.path == '/articles' || request.path =~ /\/articles\/\d+/
+  end
+
   def find_bookmark(article_id)
     Bookmark.where("user_id = ? AND article_id = ?", current_user.id, article_id)
   end
@@ -49,7 +53,7 @@ helpers do
 end
 
 before do
-
+  redirects_non_user
 end
 
 get '/' do
