@@ -23,7 +23,21 @@ helpers do
     end
     total_likes
   end
-
+  def user_ranking(user)
+    user_rank = 0
+    user.articles.each do |article|
+      user_rank += article.likes.count
+    end
+    if user_rank == 0 
+      return "science noob"
+    elsif user_rank >= 1 && user_rank < 2
+      return "science novice"
+    elsif user_rank >= 2 && user_rank <=4
+      return "science expert"
+    else 
+      return "dingus"
+    end
+  end
   def list_bookmarks
     Article.joins(:bookmarks).where(bookmarks: { user_id: current_user.id })
   end
@@ -83,6 +97,7 @@ end
 get '/users/:id' do
   @user = User.find params[:id]
   @total_likes = total_user_likes(@user)
+  @user_rank = user_ranking(@user)
   @bookmarks = list_bookmarks
   erb :'users/show'
 end
