@@ -1,61 +1,117 @@
-
-<div class="row">
-  <div class="col-md-3 avatar" style=" height: 200px;">
-    <div class="list-group">
-      <div class="list-group-item">
-      <h2><%= @user.username %></h2>
-      <img src="<%= @user.gravitar%>" class="list-group-item" style="width:80%"/>
+<div class="container">
+  <div class="row well">
+    <div class="col-md-1 fill">
+      <img src="<%= @user.gravitar%>" />
     </div>
-  YOUR SCIENCE KLOUT IS:<%=@total_likes %>
+    <div class="col-md-2">
+      <h2><%= @user.username %></h2>
+    </div>
+    <div class="col-md-2">
+      <h4>Total Likes: <%= @total_likes %></h4>
+    </div>
   </div>
-  </div>
-
-
-      <!-- Nav tabs -->
-      <div class="col-md-9">
-      <div class="well">
-        <div class="well">
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-            <a href="#articles" aria-controls="home" role="tab" data-toggle="tab">Articles</a></li>
-            <li role="presentation">
-            <a href="#bookmarks" aria-controls="bookmarks" role="tab" data-toggle="tab">Bookmarks</a></li>
-        
-​
-      <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="articles">
-            <% @user.articles.each do |article| %>
-                    <div class="article-card">
-        <a href="/articles/<%= article.id %>"><img src="<%= article.image %>" class="img-responsive" alt="<%=article.title %>"></a>
-          <div class="top"><div class="flex-center"><p><%= article.summary %></p></div></div>              <%end%>
-          </div>
-        </div>
-              
-
+</div>
+      
+<div class="container">
+  <% if current_user.id == @user.id %>
+  <ul class="nav nav-pills margin-bottom-15" role="tablist">
+    <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">Articles</a></li>
+    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab" data-toggle="tab">Bookmarks</a></li>
+  </ul>
+  <% else %>
+  <ul class="nav nav-pills margin-bottom-15" role="tablist">
+    <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">Articles</a></li>
+  </ul>
+  <% end %>
+</div>
+<div class="container">
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="articles">
+      <div class="row">
+        <% @user.articles.each do |article| %>
+          <div class="col-md-4">
+            <div class="well text-center">      
+              <div class="article-card">
+                <img src="<%= article.image %>" alt="<%=article.title %>">
+                <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
+              </div>
+              <h4><%= article.title.truncate(20) %>
+                <% if current_user %>
+                  <% if current_user && current_user.hasnt_liked?(article) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% else %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% end %>
+                  <% if current_user && current_user.hasnt_bookmarked?(article) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% else %>
+                   <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
+                      <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% end %>
+                <% end %></h4>
+                <p>posted by: 
+                  <% if current_user %>
+                    <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
+                  <% else %>
+                    <%= User.find(article.user_id).username %>
+                  <% end %> 
+                on: <%= article.created_at.strftime("%b %d, %Y") %></p>
+                <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
             </div>
-            
-            <div role="tabpanel" class="tab-pane" id="bookmarks">
-              <% @bookmarks.each do |bookmark| %>
-              <%= bookmark.title %>
-              <%= bookmark.url %>
-              <p><a href="/articles/<%= bookmark.id %>"><img src="<%= bookmark.image %>"></a></p>
-
-
-              <p>comment total = <%=bookmark.comments_count%></p>
-              <%end%>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="messages">...</div>
-            <div role="tabpanel" class="tab-pane" id="settings">...</div>
-                      <button type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-          </button>
           </div>
-​          
-
+        <% end %>
       </div>
-
+    </div>
+    <div role="tabpanel" class="tab-pane" id="bookmarks">
+      <div class="row">
+        <% @bookmarks.each do |bookmark| %>
+          <div class="col-md-4">
+            <div class="well text-center">      
+              <div class="article-card">
+                <img src="<%= bookmark.image %>" alt="<%=bookmark.title %>">
+                <a href="/articles/<%= bookmark.id %>"><div class="top"><div class="flex-center"><p><%= bookmark.summary.truncate(200) %></p></div></div></a>
+              </div>
+              <h4><%= bookmark.title.truncate(20) %>
+                <% if current_user %>
+                  <% if current_user && current_user.hasnt_liked?(bookmark) %>
+                    <form style="display: inline;" method="POST" action="/bookmarks/<%= bookmark.id %>/likes">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% else %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= bookmark.id %>/likes/delete">
+                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                    </form>
+                  <% end %>
+                  <% if current_user && current_user.hasnt_bookmarked?(bookmark) %>
+                    <form style="display: inline;" method="POST" action="/articles/<%= bookmark.id %>/bookmarks">
+                      <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% else %>
+                   <form style="display: inline;" method="POST" action="/articles/<%= bookmark.id %>/bookmarks/delete">
+                      <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+                    </form>
+                  <% end %>
+                <% end %></h4>
+                <p>posted by: 
+                <% if current_user %>
+                  <a href="/users/<%= bookmark.user_id %>"><%= User.find(bookmark.user_id).username %></a>
+                  <% else %>
+                  <%= User.find(bookmark.user_id).username %>
+                  <% end %> 
+                  on: <%= bookmark.created_at.strftime("%b %d, %Y") %></p>
+                <p><span class="label label-primary">Likes: <%= bookmark.likes.count %></span> <span class="label label-primary">Comments: <%= bookmark.comments.count %></span></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
