@@ -36,7 +36,8 @@
         <% end %> 
           | <%= @article.created_at.strftime("%b %d, %Y") %>
       </p>
-      <h5><%= @article.summary %></h5>
+      <p><%= @article.summary %></p>
+      <p><a href="<%= @article.url %>" target="_blank"><span class="glyphicon glyphicon-link"></span> Full Article</a></p>
       <p><span class="label label-primary">Likes: <%= @article.likes.count %></span> <span class="label label-primary">Comments: <%= @article.comments.count %></span></p>
       <hr/>
       <% if current_user && current_user.hasnt_commented?(@article) %>
