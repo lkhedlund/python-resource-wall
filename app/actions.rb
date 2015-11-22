@@ -4,6 +4,12 @@ helpers do
     User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def redirects_non_user
+    if !current_user
+      redirect '/articles' unless request.path == '/' || request.path == '/users' || request.path == '/users/new' || request.path == '/users/signin' || request.path == '/users/signin/test' || request.path == '/articles' || request.path =~ /\/articles\/\d+/
+    end
+  end
+
   def find_bookmark(article_id)
     Bookmark.where("user_id = ? AND article_id = ?", current_user.id, article_id)
   end
@@ -23,7 +29,21 @@ helpers do
     end
     total_likes
   end
-
+  def user_ranking(user)
+    user_rank = 0
+    user.articles.each do |article|
+      user_rank += article.likes.count
+    end
+    if user_rank == 0 
+      return "science noob"
+    elsif user_rank >= 1 && user_rank < 2
+      return "science novice"
+    elsif user_rank >= 2 && user_rank <=4
+      return "science expert"
+    else 
+      return "dingus"
+    end
+  end
   def list_bookmarks
     Article.joins(:bookmarks).where(bookmarks: { user_id: current_user.id })
   end
@@ -35,7 +55,7 @@ helpers do
 end
 
 before do
-
+  redirects_non_user
 end
 
 get '/' do
@@ -83,6 +103,7 @@ end
 get '/users/:id' do
   @user = User.find params[:id]
   @total_likes = total_user_likes(@user)
+  @user_rank = user_ranking(@user)
   @bookmarks = list_bookmarks
   erb :'users/show'
 end
