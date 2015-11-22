@@ -35,11 +35,11 @@ helpers do
       user_rank += article.likes.count
     end
     if user_rank == 0 
-      return "science noob"
+      return "Science Noob"
     elsif user_rank >= 1 && user_rank < 2
-      return "science novice"
+      return "Science Novice"
     elsif user_rank >= 2 && user_rank <=4
-      return "science expert"
+      return "Science Expert"
     else 
       return "dingus"
     end
@@ -78,8 +78,12 @@ get '/articles/edit' do
 end
 
 get '/articles/:id' do
-  @article = Article.find params[:id]
-  erb :'articles/show'
+  @article = Article.find_by_id params[:id]
+  if @articles
+    erb :'articles/show'
+  else
+    erb :'error'
+  end
 end
 
 get '/users' do
@@ -101,11 +105,15 @@ get '/users/signout' do
 end
 
 get '/users/:id' do
-  @user = User.find params[:id]
-  @total_likes = total_user_likes(@user)
-  @user_rank = user_ranking(@user)
-  @bookmarks = list_bookmarks
-  erb :'users/show'
+  @user = User.find_by_id params[:id]
+  if @user
+    @total_likes = total_user_likes(@user)
+    @user_rank = user_ranking(@user)
+    @bookmarks = list_bookmarks
+    erb :'users/show'
+  else
+    erb :'error'
+  end
 end
 
 post '/articles' do
