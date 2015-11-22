@@ -79,7 +79,7 @@ end
 
 get '/articles/:id' do
   @article = Article.find_by_id params[:id]
-  if @articles
+  if @article
     erb :'articles/show'
   else
     erb :'error'
