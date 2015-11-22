@@ -1,6 +1,11 @@
 body {
-  background-image: url("http://imgsrc.hubblesite.org/hu/db/images/hs-2013-11-b-xlarge_web.jpg");
-  background-attachment: fixed;
+  background-color: #222222;
+  /*background-image: url("http://i.imgur.com/Y1nHV8H.gif");*/
+  /*http://stormandsky.com/gif/3.gif*/
+  /*background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  background-attachment: fixed;*/
 }
 
 .ltgray {
@@ -15,48 +20,49 @@ body {
   color: blue;
 }
 
-.article-card {
-  position: relative;
-  height: 300px;
-  width: 300px;
-  margin: 0 auto;
-  overflow: hidden;
+.navbar-inner {
+    background: transparent;
+    /*background-color: #000000;*/
+    border: none;
 }
 
-.article-card img {
-  position: absolute;
-  height: 300px;
-  width: 300px;
-  left: 50%;
-  transform: translateX(-50%);
+.square {
+    float: left;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    margin-bottom: 10px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.top {
-  height: 300px;
-  width: 300px;
+.overlay {
+  height: 100%;
+  width: 100%;
   background-color: #FFFFFF;
   position: absolute;
   left: 0;
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
   opacity: 0;
 }
 
-.top:hover {
+.overlay:hover {
   opacity: 0.8;
 }
 
-.flex-center {
+.overlay-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 300px;
+  height: 100%;
   overflow: auto;
 }
 
-.flex-center p {
+.overlay-center p {
   margin: 0;
   padding: 20px;
 }
