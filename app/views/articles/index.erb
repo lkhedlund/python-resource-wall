@@ -13,8 +13,8 @@
               <div class="square" style="background-image:url('<%= article.image %>')">
               <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(120) %></p></div></div>
               </div></a>
-              <h5><%= article.title.truncate(25) %></h5>
-              <h4><% if current_user %>
+              <h4>
+                <% if current_user %>
                   <% if current_user && current_user.hasnt_liked?(article) %>
                     <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
                       <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
@@ -33,7 +33,9 @@
                       <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
                     </form>
                   <% end %>
-                <% end %></h4>
+                <% end %>
+              </h4>
+              <h5><%= article.title.truncate(25) %></h5>
                 <p>
                 <% if current_user %>
                   <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
@@ -54,9 +56,9 @@
             <div class="well text-center">
               <a href="/articles/<%= article.id %>">
               <div class="square" style="background-image:url('<%= article.image %>')">
-              <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(200) %></p></div></div>
+              <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(120) %></p></div></div>
               </div></a>
-              <h5><%= article.title.truncate(18) %>
+              <h4>
                 <% if current_user %>
                   <% if current_user && current_user.hasnt_liked?(article) %>
                     <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
@@ -76,7 +78,9 @@
                       <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
                     </form>
                   <% end %>
-                <% end %></h5>
+                <% end %>
+              </h4>
+              <h5><%= article.title.truncate(25) %></h5>
                 <p>
                 <% if current_user %>
                   <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>

@@ -34,15 +34,15 @@
               <div class="square" style="background-image:url('<%= article.image %>')">
               <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(120) %></p></div></div>
               </div></a>
-              <h5><%= article.title.truncate(20) %></h5>
-                <h4><% if current_user %>
+              <h4>
+                <% if current_user %>
                   <% if current_user && current_user.hasnt_liked?(article) %>
                     <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
                       <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
                     </form>
                   <% else %>
                     <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
-                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                        <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
                     </form>
                   <% end %>
                   <% if current_user && current_user.hasnt_bookmarked?(article) %>
@@ -54,14 +54,16 @@
                       <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
                     </form>
                   <% end %>
-                <% end %></h4>
-                <p>posted by: 
-                  <% if current_user %>
-                    <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
+                <% end %>
+              </h4>
+              <h5><%= article.title.truncate(25) %></h5>
+                <p>
+                <% if current_user %>
+                  <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
                   <% else %>
-                    <%= User.find(article.user_id).username %>
+                  <%= User.find(article.user_id).username %>
                   <% end %> 
-                on: <%= article.created_at.strftime("%b %d, %Y") %></p>
+                  | <%= article.created_at.strftime("%m.%d.%y") %></p>
                 <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
             </div>
           </div>
@@ -77,15 +79,15 @@
               <div class="square" style="background-image:url('<%= bookmark.image %>')">
               <div class="overlay"><div class="overlay-center"><p><%= bookmark.summary.truncate(120) %></p></div></div>
               </div></a>
-              <h5><%= bookmark.title.truncate(20) %></h5>
-                <h4><% if current_user %>
+              <h4>
+                <% if current_user %>
                   <% if current_user && current_user.hasnt_liked?(bookmark) %>
-                    <form style="display: inline;" method="POST" action="/bookmarks/<%= bookmark.id %>/likes">
+                    <form style="display: inline;" method="POST" action="/articles/<%= bookmark.id %>/likes">
                       <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
                     </form>
                   <% else %>
                     <form style="display: inline;" method="POST" action="/articles/<%= bookmark.id %>/likes/delete">
-                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                        <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
                     </form>
                   <% end %>
                   <% if current_user && current_user.hasnt_bookmarked?(bookmark) %>
@@ -97,14 +99,16 @@
                       <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
                     </form>
                   <% end %>
-                <% end %></h4>
-                <p>posted by: 
+                <% end %>
+              </h4>
+              <h5><%= bookmark.title.truncate(25) %></h5>
+                <p>
                 <% if current_user %>
-                  <a href="/users/<%= bookmark.user_id %>"><%= User.find(bookmark.user_id).username %></a>
+                  <a href="/users/<%= bookmark.user_id %>">@<%= User.find(bookmark.user_id).username %></a>
                   <% else %>
                   <%= User.find(bookmark.user_id).username %>
                   <% end %> 
-                  on: <%= bookmark.created_at.strftime("%b %d, %Y") %></p>
+                  | <%= bookmark.created_at.strftime("%m.%d.%y") %></p>
                 <p><span class="label label-primary">Likes: <%= bookmark.likes.count %></span> <span class="label label-primary">Comments: <%= bookmark.comments.count %></span></p>
             </div>
           </div>

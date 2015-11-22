@@ -1,3 +1,13 @@
+body {
+  background-color: #222222;
+  /*background-image: url("http://i.imgur.com/Y1nHV8H.gif");*/
+  /*http://stormandsky.com/gif/3.gif*/
+  /*background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  background-attachment: fixed;*/
+}
+
 .ltgray {
   color: #d3d3d3;
 }
@@ -10,6 +20,12 @@
   color: blue;
 }
 
+.navbar-inner {
+    background: transparent;
+    /*background-color: #000000;*/
+    border: none;
+}
+
 .square {
     float: left;
     position: relative;
@@ -18,7 +34,7 @@
     margin-bottom: 10px;
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover; /* you change this to "contain" if you don't want the images to be cropped */
+    background-size: cover;
 }
 
 .overlay {
