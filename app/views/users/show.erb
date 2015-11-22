@@ -1,22 +1,30 @@
 <div class="container">
   <div class="row well">
-    <div class="col-md-3 avatar" style=" height: 200px;">
-      <img src="<%= @user.gravitar%>" style="width:80%"/>
+    <div class="col-md-1 fill">
+      <img src="<%= @user.gravitar%>" />
     </div>
-    <div class="col-md-9">
-      <h1><%= @user.username %></h1>
-      <h2>Total Likes: <%=@total_likes %></h2>
+    <div class="col-md-2">
+      <h2><%= @user.username %></h2>
+    </div>
+    <div class="col-md-2">
+      <h4>Total Likes: <%= @total_likes %></h4>
     </div>
   </div>
 </div>
       
 <div class="container">
+  <% if current_user.id == @user.id %>
   <ul class="nav nav-pills margin-bottom-15" role="tablist">
     <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">Articles</a></li>
-    <% if current_user && current_user.id == @user.id %>
     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab" data-toggle="tab">Bookmarks</a></li>
-    <% end %>
   </ul>
+  <% else %>
+  <ul class="nav nav-pills margin-bottom-15" role="tablist">
+    <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">Articles</a></li>
+  </ul>
+  <% end %>
+</div>
+<div class="container">
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="articles">
       <div class="row">
@@ -24,8 +32,8 @@
           <div class="col-md-4">
             <div class="well text-center">      
               <div class="article-card">
-              <img src="<%= article.image %>" alt="<%=article.title %>">
-              <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
+                <img src="<%= article.image %>" alt="<%=article.title %>">
+                <a href="/articles/<%= article.id %>"><div class="top"><div class="flex-center"><p><%= article.summary.truncate(200) %></p></div></div></a>
               </div>
               <h4><%= article.title.truncate(20) %>
                 <% if current_user %>
@@ -35,7 +43,7 @@
                     </form>
                   <% else %>
                     <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
-                        <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
                     </form>
                   <% end %>
                   <% if current_user && current_user.hasnt_bookmarked?(article) %>
@@ -49,28 +57,26 @@
                   <% end %>
                 <% end %></h4>
                 <p>posted by: 
-                <% if current_user %>
-                  <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
+                  <% if current_user %>
+                    <a href="/users/<%= article.user_id %>"><%= User.find(article.user_id).username %></a>
                   <% else %>
-                  <%= User.find(article.user_id).username %>
+                    <%= User.find(article.user_id).username %>
                   <% end %> 
-                  on: <%= article.created_at.strftime("%b %d, %Y") %></p>
+                on: <%= article.created_at.strftime("%b %d, %Y") %></p>
                 <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
             </div>
           </div>
         <% end %>
       </div>
     </div>
-  </div>
-  <% if current_user && current_user.id == @user.id %>
-  <div class="tab-content">    
-      <div role="tabpanel" class="tab-pane" id="bookmarks">
+    <div role="tabpanel" class="tab-pane" id="bookmarks">
+      <div class="row">
         <% @bookmarks.each do |bookmark| %>
           <div class="col-md-4">
             <div class="well text-center">      
               <div class="article-card">
-              <img src="<%= bookmark.image %>" alt="<%=bookmark.title %>">
-              <a href="/articles/<%= bookmark.id %>"><div class="top"><div class="flex-center"><p><%= bookmark.summary.truncate(200) %></p></div></div></a>
+                <img src="<%= bookmark.image %>" alt="<%=bookmark.title %>">
+                <a href="/articles/<%= bookmark.id %>"><div class="top"><div class="flex-center"><p><%= bookmark.summary.truncate(200) %></p></div></div></a>
               </div>
               <h4><%= bookmark.title.truncate(20) %>
                 <% if current_user %>
@@ -80,7 +86,7 @@
                     </form>
                   <% else %>
                     <form style="display: inline;" method="POST" action="/articles/<%= bookmark.id %>/likes/delete">
-                        <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
                     </form>
                   <% end %>
                   <% if current_user && current_user.hasnt_bookmarked?(bookmark) %>
@@ -105,8 +111,7 @@
           </div>
         <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
   </div>
 </div>
 
