@@ -34,14 +34,18 @@ helpers do
     user.articles.each do |article|
       user_rank += article.likes.count
     end
-    if user_rank == 0 
+    if user_rank >= 0 && user_rank < 10
       return "Science Noob"
-    elsif user_rank >= 1 && user_rank < 2
+    elsif user_rank >= 10 && user_rank < 30
       return "Science Novice"
-    elsif user_rank >= 2 && user_rank <=4
+    elsif user_rank >= 30 && user_rank < 50
+      return "Science Keener"
+    elsif user_rank >= 50  && user_rank < 100
       return "Science Expert"
+    elsif user_rank >= 100  && user_rank < 10000
+      return "Science Master"
     else 
-      return "dingus"
+      return "Dean of Science Admin"
     end
   end
   def list_bookmarks
