@@ -13,20 +13,20 @@
   <button>User ID: 3</button>
 </form>
 
-<div>
+<div class="container ltgray">
   <h1>Sign In</h1>
 
-  <form method="post" action="/users/signin">
-    <div>
+  <form role="form" method="post" action="/users/signin">
+    <div class="form-group">
       <label for="email">Email: </label>
-      <input id="email" name="email" />
+      <input class="form-control" id="email" name="email" />
     </div>
-    <div>
+    <div class="form-group">
       <label for="password">Password: </label>
-      <input type="password" id="password" name="password" />
+      <input class="form-control" type="password" id="password" name="password" />
     </div>
     <div>
-      <button>Sign in</button>
+      <button class="btn btn-success">Sign in</button>
     </div>
   </form>
 
