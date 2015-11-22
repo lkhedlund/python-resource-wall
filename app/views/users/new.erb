@@ -1,22 +1,23 @@
-<div>
+<div class="container ltgray">
   <h1>Sign Up</h1>
 
-  <form method="post" action="/users">
-    <div>
+  <form role="form" method="post" action="/users">
+    <div class="form-group">
       <label for="username">Username: </label>
-      <input id="username" name="user[username]" />
+      <input class="form-control" id="username" name="user[username]" />
     </div>
-    <div>
+    <div class="form-group">
       <label for="email">Email: </label>
-      <input id="email" name="user[email]" />
+      <input class="form-control" id="email" name="user[email]" />
     </div>
-    <div>
+    <div class="form-group">
       <label for="password">Password: </label>
-      <input type="password" id="password" name="user[password]" />
+      <input class="form-control" type="password" id="password" name="user[password]" />
     </div>
-    <div>
-      <button>Sign up</button>
+    <div class="form-group">
+      <button class="btn btn-success">Sign up</button>
     </div>
   </form>
-
 </div>
+
+
