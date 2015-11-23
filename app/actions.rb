@@ -96,11 +96,11 @@ get '/users' do
 end
 
 get '/users/new' do
-  erb :'users/new'
+  erb :'users/new', :layout => :layout_landing
 end
 
 get '/users/signin' do
-  erb :'users/signin'
+  erb :'users/signin', :layout => :layout_landing
 end
 
 get '/users/signout' do
