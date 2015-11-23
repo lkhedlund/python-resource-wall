@@ -36,17 +36,17 @@ helpers do
       user_rank += article.likes.count
     end
     if user_rank >= 0 && user_rank < 3
-      return "Space Cadet Trainee"
+      return "Cadet Trainee"
     elsif user_rank >= 3 && user_rank < 5
       return "Space Cadet"
     elsif user_rank >= 5 && user_rank < 9
-      return "Command Module Pilot"
+      return "Senior Cadet"
     elsif user_rank >= 9  && user_rank < 12
       return "Astronaut"
     elsif user_rank >= 12  && user_rank < 10000
-      return "Lunar Mission Commander"
+      return "Commander"
     else 
-      return "NASA Headquarters Mission Admin"
+      return "NASA HQ CEO"
     end
   end
   def list_bookmarks
