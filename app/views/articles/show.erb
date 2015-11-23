@@ -56,7 +56,7 @@
       <% end %>
       <% @article.comments.each do |c| %>
         <% if current_user %>
-          <p><img style="width:5%" src="<%= @article.user.gravitar %>"/> <a href="/users/<%= c.user_id %>"><strong>@<%= c.user.username %></strong></a> on <%= c.created_at.strftime("%b %d, %Y") %></p><p><%= c.comment %></p>
+          <p><img style="width:5%" src="<%= c.user.gravitar %>"/> <a href="/users/<%= c.user_id %>"><strong>@<%= c.user.username %></strong></a> on <%= c.created_at.strftime("%b %d, %Y") %></p><p><%= c.comment %></p>
           <% if c.user_id == current_user.id %>
             <form method="post" action="/articles/<%= @article.id %>/comments/<%= c.id %>/delete">
               <button type="submit" class="btn btn-danger btn-xs">Delete</button>
