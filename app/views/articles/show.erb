@@ -64,7 +64,7 @@
           <% end %>
           <hr/>
         <% else %>
-          <p><img style="width:5%" src="<%= @article.user.gravitar %>"/> <strong>@<%= c.user.username %></strong> on <%= c.created_at.strftime("%b %d, %Y") %></p><p><%= c.comment %></p>
+          <p><img style="width:5%" src="<%= c.user.gravitar %>"/> <strong>@<%= c.user.username %></strong> on <%= c.created_at.strftime("%b %d, %Y") %></p><p><%= c.comment %></p>
           <hr/>
         <% end %>
       <% end %>
