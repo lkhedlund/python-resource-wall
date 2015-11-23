@@ -34,12 +34,12 @@
                   <% end %>
                 <% end %>
               </h4>
-              <h5><%= article.title.truncate(25) %></h5>
+              <h5><%= article.title.truncate(23) %></h5>
                 <p>
                 <% if current_user %>
                   <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
                   <% else %>
-                  <%= User.find(article.user_id).username %>
+                    @<%= User.find(article.user_id).username %>
                   <% end %> 
                   | <%= article.created_at.strftime("%m.%d.%y") %></p>
                 <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
@@ -79,12 +79,12 @@
                   <% end %>
                 <% end %>
               </h4>
-              <h5><%= article.title.truncate(25) %></h5>
-                <p>
+              <h5><%= article.title.truncate(23) %></h5>
+                <p>@
                 <% if current_user %>
                   <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
                   <% else %>
-                  <%= User.find(article.user_id).username %>
+                    @<%= User.find(article.user_id).username %>
                   <% end %> 
                   | <%= article.created_at.strftime("%m.%d.%y") %></p>
                 <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
