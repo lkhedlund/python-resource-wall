@@ -80,7 +80,7 @@
                 <% end %>
               </h4>
               <h5><%= article.title.truncate(23) %></h5>
-                <p>@
+                <p>
                 <% if current_user %>
                   <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
                   <% else %>
