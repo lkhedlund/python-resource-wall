@@ -29,23 +29,24 @@ helpers do
     end
     total_likes
   end
+
   def user_ranking(user)
     user_rank = 0
     user.articles.each do |article|
       user_rank += article.likes.count
     end
-    if user_rank >= 0 && user_rank < 10
-      return "Science Noob"
-    elsif user_rank >= 10 && user_rank < 30
-      return "Science Novice"
-    elsif user_rank >= 30 && user_rank < 50
-      return "Science Keener"
-    elsif user_rank >= 50  && user_rank < 100
-      return "Science Expert"
-    elsif user_rank >= 100  && user_rank < 10000
-      return "Science Master"
+    if user_rank >= 0 && user_rank < 3
+      return "Cadet Trainee"
+    elsif user_rank >= 3 && user_rank < 5
+      return "Space Cadet"
+    elsif user_rank >= 5 && user_rank < 9
+      return "Senior Cadet"
+    elsif user_rank >= 9  && user_rank < 12
+      return "Astronaut"
+    elsif user_rank >= 12  && user_rank < 10000
+      return "Commander"
     else 
-      return "Dean of Science Admin"
+      return "NASA HQ CEO"
     end
   end
   def list_bookmarks
