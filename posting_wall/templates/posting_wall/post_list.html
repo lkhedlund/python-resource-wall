@@ -1,0 +1,15 @@
+{% extends 'posting_wall/base.html' %}
+
+{% block content %}
+  <h1>Posting Wall</h1>
+  {% for post in posts %}
+    <h2>{{ post.title }}</h2>by {{ post.author }}
+    <p>
+      {{ post.summary }}
+    </p>
+    <p>
+      {{ post.url }}
+    </p>
+    <a href="{% url 'post_detail' pk=post.pk %}"><button>Show</button></a>
+  {% endfor %}
+{% endblock %}

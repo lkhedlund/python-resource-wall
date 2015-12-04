@@ -1,10 +1,4 @@
-Sinatra
-=============
+Completed Tasks:
 
-Brought to you by Lighthouse Labs
-
-## Getting Started
-
-1. `bundle install`
-2. `shotgun -p 3000 -o 0.0.0.0`
-3. Visit `http://localhost:3000/` in your browser
+1) Moved all public files to posting_wall static.
+2) Layout.html moved to base.html (keeping layout for reference)
