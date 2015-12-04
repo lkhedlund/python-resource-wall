@@ -1,6 +1,6 @@
 body {
   /*background-color: #21263a;*/
-  background-image: url("/images/galaxy.jpg");
+  background-image: url("./images/galaxy.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -1,0 +1,51 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static './bootstrap/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static './stylesheets/application.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <script src="{% static './javascript/jquery.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+
+    <script src="{% static './bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static './javascript/application.js' %}"></script>
+    <title>Python Resource Wall</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-inner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Python Resources</a>
+        </div>
+          <!-- <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/articles"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <% unless current_user %>
+              <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+            <% else %>
+              <li><a href="/articles/new"><span class="glyphicon glyphicon-file"></span> Add New Article</a></li>
+              <li><a href="/users/<%= current_user.id %>"><span class="glyphicon glyphicon-user"></span> <%= current_user.username %></a></li>
+              <li><a href="/users/signout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+            <% end %>
+            </ul>
+          </div> -->
+      </div>
+    </nav>
+  <body>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

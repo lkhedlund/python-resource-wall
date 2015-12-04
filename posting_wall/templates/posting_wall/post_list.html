@@ -1,4 +1,14 @@
-<h1>Posting Wall</h1>
-{% for post in posts %}
-  {{ post.title }}
-{% endfor %}
+{% extends 'posting_wall/base.html' %}
+
+{% block content %}
+  <h1>Posting Wall</h1>
+  {% for post in posts %}
+    <h2>{{ post.title }}</h2>by {{ post.author }}
+    <p>
+      {{ post.summary }}
+    </p>
+    <p>
+      {{ post.url }}
+    </p>
+  {% endfor %}
+{% endblock %}
