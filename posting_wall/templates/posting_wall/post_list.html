@@ -10,5 +10,6 @@
     <p>
       {{ post.url }}
     </p>
+    <a href="{% url 'post_detail' pk=post.pk %}"><button>Show</button></a>
   {% endfor %}
 {% endblock %}
