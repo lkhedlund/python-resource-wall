@@ -6,8 +6,9 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     summary = models.TextField()
-    url = models.URLField(blank=True)
+    url = models.URLField()
     created_date = models.DateTimeField(default=timezone.now)
+    tag = models.CharField(max_length=10)
 
     def __str__(self):
         return self.title
