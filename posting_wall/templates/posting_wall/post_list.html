@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Posting Wall</h1>
   {% for post in posts %}
-    <h2>{{ post.title }}</h2>by {{ post.author }}
+    <h2>{{ post.title }}</h2>
     <p>
       {{ post.summary|truncatechars:200 }}
     </p>
