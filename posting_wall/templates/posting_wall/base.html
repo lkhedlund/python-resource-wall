@@ -33,11 +33,12 @@
             {% if user.is_authenticated %}
               <li><a href="{% url 'post_new' %}"><span class="glyphicon glyphicon-file"></span> Add New Article</a></li>
               <!-- TODO: Add user profile -->
-              <!-- <li><a href="USER ID PATH"><span class="glyphicon glyphicon-user"></span> USER NAME </a></li>
-              <li><a href="/users/signout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li> -->
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ user.username }} </a></li>
+              <li><a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
             {% else %}
-              <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+            <!-- TODO: Add signup -->
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="{% url 'django.contrib.auth.views.login' %}"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
             {% endif %}
             </ul>
           </div>
