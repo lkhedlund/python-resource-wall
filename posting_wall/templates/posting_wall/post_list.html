@@ -1,18 +1,37 @@
 {% extends 'posting_wall/base.html' %}
 
 {% block content %}
-  <h1>Posting Wall</h1>
-  {% for post in posts %}
-    <h2>{{ post.title }}</h2>
-    <p>
-      Comments: {{ post.comments.count }}
-    </p>
-    <p>
-      {{ post.summary|truncatechars:200 }}
-    </p>
-    <p>
-      <a href="{{ post.url }}">{{ post.url }}</a>
-    </p>
-    <a href="{% url 'post_detail' pk=post.pk %}"><button>Show</button></a>
-  {% endfor %}
+<ul class="nav nav-pills margin-bottom-15" role="tablist">
+  <!-- <li role="presentation" class="active"><a href="#date" aria-controls="date" role="tab" data-toggle="tab">Order By Date</a></li>
+  <li role="presentation"><a href="#popularity" aria-controls="popularity" role="tab" data-toggle="tab">Order By Popularity</a></li> -->
+</ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="date">
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-md-3">
+          <div class="well text-center">
+            <a href="{% url 'post_detail' pk=post.pk %}">
+            <div class="square" style="background-image:url('http://www.fillmurray.com/200/200')">
+              <div class="overlay">
+                <div class="overlay-center">
+                  <p>{{ post.summary|truncatechars:120 }}</p>
+                </div>
+              </div>
+            </div>
+            </a>
+            <h4 >{{ post.title|truncatechars:30 }}</h4>
+            <p>
+              @{{ post.author }} | {{ post.created_date }}
+            </p>
+            <p>
+              <span class="label label-primary">Comments: {{ post.comments.count }}</span>
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

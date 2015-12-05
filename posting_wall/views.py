@@ -5,7 +5,7 @@ from .forms import PostForm, CommentForm
 
 # Create your views here.
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created_date')
     return render(request, 'posting_wall/post_list.html', { 'posts': posts })
 
 @login_required
