@@ -5,10 +5,10 @@
   {% for post in posts %}
     <h2>{{ post.title }}</h2>by {{ post.author }}
     <p>
-      {{ post.summary }}
+      {{ post.summary|truncatechars:200 }}
     </p>
     <p>
-      {{ post.url }}
+      <a href="{{ post.url }}">{{ post.url }}</a>
     </p>
     <a href="{% url 'post_detail' pk=post.pk %}"><button>Show</button></a>
   {% endfor %}

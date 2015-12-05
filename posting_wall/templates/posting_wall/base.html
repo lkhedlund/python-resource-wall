@@ -27,19 +27,20 @@
           </button>
           <a class="navbar-brand" href="/">Python Resources</a>
         </div>
-          <!-- <div class="collapse navbar-collapse" id="myNavbar">
+          <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/articles"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-            <% unless current_user %>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'post_new' %}"><span class="glyphicon glyphicon-file"></span> Add New Article</a></li>
+              <!-- TODO: Add user profile -->
+              <!-- <li><a href="USER ID PATH"><span class="glyphicon glyphicon-user"></span> USER NAME </a></li>
+              <li><a href="/users/signout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li> -->
+            {% else %}
               <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-            <% else %>
-              <li><a href="/articles/new"><span class="glyphicon glyphicon-file"></span> Add New Article</a></li>
-              <li><a href="/users/<%= current_user.id %>"><span class="glyphicon glyphicon-user"></span> <%= current_user.username %></a></li>
-              <li><a href="/users/signout"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
-            <% end %>
+            {% endif %}
             </ul>
-          </div> -->
+          </div>
       </div>
     </nav>
   <body>
