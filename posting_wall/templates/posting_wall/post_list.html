@@ -5,6 +5,9 @@
   {% for post in posts %}
     <h2>{{ post.title }}</h2>
     <p>
+      Comments: {{ post.comments.count }}
+    </p>
+    <p>
       {{ post.summary|truncatechars:200 }}
     </p>
     <p>
