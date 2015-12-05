@@ -7,4 +7,20 @@
   </p>
   <a href="{{ post.url }}">{{ post.url }}</a>
   <a href="{% url 'post_edit' pk=post.pk %}"><button>Edit</button></a>
+  <a href="{% url 'post_comment_new' pk=post.pk %}"><button>Add Comment</button></a>
+  <hr>
+  {% for comment in comments %}
+  <!-- TODO: remove inline style in final version -->
+  <div style="border: 1px solid black;">
+    {{ comment.created_date }}
+    {{ comment.author }}
+    {{ comment.text|linebreaks }}
+  </div>
+  {% empty %}
+    <p>
+      No comments yet
+    </p>
+  {% endfor %}
+
+
 {% endblock %}
