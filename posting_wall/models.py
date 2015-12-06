@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+# Import Signals
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
-# Create your models here.
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -21,3 +23,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+@receiver(pre_save, sender=Post)
+def tag_to_lowercase(sender, instance, *args, **kwargs):
+    instance.tag = instance.tag.lower()
