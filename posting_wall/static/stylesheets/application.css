@@ -189,3 +189,7 @@ header .intro-text .intro-heading {
     margin-right:-2px;
     right: 2px;
 }
+
+.well {
+    min-height: 360px;
+}

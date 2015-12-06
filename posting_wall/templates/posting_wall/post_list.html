@@ -1,4 +1,5 @@
 {% extends 'posting_wall/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 <ul class="nav nav-pills margin-bottom-15" role="tablist">
@@ -13,7 +14,7 @@
         <div class="col-md-3">
           <div class="well text-center">
             <a href="{% url 'post_detail' pk=post.pk %}">
-            <div class="square" style="background-image:url('http://www.fillmurray.com/200/200')">
+            <div class="square" style="background-image:url('{% static './images/pylogo.jpg' %}')">
               <div class="overlay">
                 <div class="overlay-center">
                   <p>{{ post.summary|truncatechars:120 }}</p>
@@ -27,6 +28,7 @@
             </p>
             <p>
               <span class="label label-primary">Comments: {{ post.comments.count }}</span>
+              <span class="label label-primary">Tag: {{ post.tag }}</span>
             </p>
           </div>
         </div>

@@ -7,7 +7,9 @@
 - ~~Add comments to models~~
 - Add Upvotes and Bookmarks features if number of active users is high enough
 - Add article images?
-- Add tags to articles for easier sorting
+- ~~Add tags to articles~~
+- Add article scraper
+- Maybe switch to the [bootstrap 3 egg](https://github.com/dyve/django-bootstrap3)
 
 ###Notes:
 - Not sure about article images given the types of articles being added. Could maybe autofill with a placekitten or something fun.
@@ -15,6 +17,8 @@
   - Will need to learn how to count by a single post's comments first
 
 ###Sinatra Files to keep:
-_Reason is nested_
+_Reason for keeping is nested_
 - views/articles/index.erb
   - Can use if upvotes and bookmarks are added
+-views/articles/show.erb
+  - Same reason as above

@@ -11,7 +11,7 @@ def post_list(request):
 @login_required
 def post_detail(request, pk):
     post = get_object_or_404( Post, pk=pk )
-    comments = post.comments.all
+    comments = post.comments.all().order_by('-created_date')
     return render(request, 'posting_wall/post_detail.html', { 'post': post, 'comments': comments })
 
 @login_required
