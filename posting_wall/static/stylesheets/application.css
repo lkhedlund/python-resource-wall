@@ -21,7 +21,7 @@ body {
   -o-background-size: cover;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-brand {
   font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 21px;
 }
