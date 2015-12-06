@@ -3,10 +3,12 @@
     {{ field }}
   {% else %}
   <div class="form-group">
-    {{ field.errors }}
     {{ field.label_tag }}
     {{ field }}
   </div>
+  {% if field.errors %}
+    <div class="alert alert-danger" role="alert">{{ field.errors }}</div>
+  {% endif %}
   {% endif %}
   {% if field.help_text %}
     <p class="help-block">{{ field.help_text|safe }}</p>

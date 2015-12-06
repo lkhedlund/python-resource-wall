@@ -1,6 +1,6 @@
 body {
-  background-color: #21263a;
-  /*background-image: url("./images/galaxy.jpg");*/
+  /*background-color: #21263a;*/
+  background-color: #d3d3d3;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -21,14 +21,15 @@ body {
   -o-background-size: cover;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-brand {
   font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 21px;
 }
 
 header {
   text-align: center;
-  color: #FFFFFF;
+  /*color: #FFFFFF;*/
+  color: black;
 }
 
 header .intro-text {
@@ -90,6 +91,7 @@ header .intro-text .intro-heading {
   width: 100%;
   background-color: #FFFFFF;
   position: absolute;
+  top: 0;
   left: 0;
   -webkit-transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
@@ -191,5 +193,8 @@ header .intro-text .intro-heading {
 }
 
 .well {
-    min-height: 360px;
+    position: relative;
+}
+.well h3 {
+    height: 70px;
 }

@@ -14,15 +14,13 @@
         <div class="col-md-3">
           <div class="well text-center">
             <a href="{% url 'post_detail' pk=post.pk %}">
-            <div class="square" style="background-image:url('{% static './images/pylogo.jpg' %}')">
               <div class="overlay">
                 <div class="overlay-center">
                   <p>{{ post.summary|truncatechars:120 }}</p>
                 </div>
               </div>
-            </div>
             </a>
-            <h4 >{{ post.title|truncatechars:30 }}</h4>
+            <h3>{{ post.title|truncatechars:35 }}</h3>
             <p>
               @{{ post.author }} | {{ post.created_date }}
             </p>

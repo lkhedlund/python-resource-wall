@@ -15,13 +15,17 @@
           <span class="label label-primary">Comments: {{ post.comments.count }}</span>
         </p>
         <hr/>
-        <div class="form-group">
-        <form method="post" action="{% url 'post_comment_new' pk=post.pk %}">
-          {% csrf_token %}
-          {% include "partials/form.html"%}
-          <button type="submit" class="btn btn-default btn-sm" style="margin-top: -10px;">Post</button>
-        </form>
-          <hr/>
+        {% if user.is_authenticated %}
+          <div class="form-group">
+          <form method="post" action="{% url 'post_detail' pk=post.pk %}">
+            {% csrf_token %}
+            {% include "partials/form.html"%}
+            <button type="submit" class="btn btn-default btn-sm" style="margin-top: -10px;">Post</button>
+          </form>
+        {% else %}
+          <a href="/accounts/login/">Sign In to Post a Comment</a>
+        {% endif %}
+        <hr/>
         {% for comment in comments %}
           <p>
             <strong>@{{ comment.author }}</strong> on {{ comment.created_date }}</p>
