@@ -15,13 +15,20 @@
           <span class="label label-primary">Comments: {{ post.comments.count }}</span>
         </p>
         <hr/>
+        <div class="form-group">
+        <form method="post" action="{% url 'post_comment_new' pk=post.pk %}">
+          {% csrf_token %}
+          {% include "partials/form.html"%}
+          <button type="submit" class="btn btn-default btn-sm" style="margin-top: -10px;">Post</button>
+        </form>
+          <!-- <div class="form-group">
           <form method="post" action="{% url 'post_comment_new' pk=post.pk %}">
             {% csrf_token %}
             <div class="form-group">
-              {{ form.as_p }}
+              {{ form }}
             </div>
             <button type="submit" class="btn btn-default btn-sm" style="margin-top: -10px;">Post</button>
-          </form>
+          </form> -->
           <hr/>
         {% for comment in comments %}
           <p>

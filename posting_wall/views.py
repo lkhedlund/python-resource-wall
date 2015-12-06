@@ -12,7 +12,16 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404( Post, pk=pk )
     comments = post.comments.all().order_by('-created_date')
-    return render(request, 'posting_wall/post_detail.html', { 'post': post, 'comments': comments })
+    if request.method == "POST":
+        form = CommentForm( request.POST )
+        if form.is_valid():
+            comment = form.save( commit=False )
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+    else:
+        form = CommentForm()
+        return render(request, 'posting_wall/post_detail.html', { 'post': post, 'comments': comments, 'form': form })
 
 @login_required
 def post_new(request):
