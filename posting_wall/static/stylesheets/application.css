@@ -1,5 +1,5 @@
 body {
-  /*background-color: #21263a;*/
+  background-color: #21263a;
   /*background-image: url("./images/galaxy.jpg");*/
   background-position: center center;
   background-repeat: no-repeat;
@@ -188,4 +188,8 @@ header .intro-text .intro-heading {
     float:none;
     margin-right:-2px;
     right: 2px;
+}
+
+.well {
+    min-height: 360px;
 }
