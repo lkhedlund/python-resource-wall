@@ -1,4 +1,13 @@
-# python-resource-wall (In Development)
-A fork of the Science Wall project with a focus on Python and Django resources. 
-I'm working on rewriting the app in Django in small stages, starting with the basic structure and working on migrating all of the
-sinatra apps' features.
+# Python/Django Resource Wall
+A simple web app I used as a way to practice writing Django apps. I forked a previous project so that I could focus on learning the framework and applying some of the features in a new way.
+
+# Get started
+Visit the app at [http://lkhedlund.pythonanywhere.com/](http://lkhedlund.pythonanywhere.com/) and log in
+using the guest credentials:
+Username: `yamnuska` Password: `rockies1`
+
+# Features to be added
+- Sort by tag or created date
+- Improved bootstrap styling
+- User profile and login
+- Search function
