@@ -58,3 +58,9 @@ target/
 
 # Development Database
 *.sqlite3
+
+# Virtual Environment
+venv/
+
+# Old Sinatra Files
+sinatra-old/
