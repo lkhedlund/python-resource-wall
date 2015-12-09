@@ -5,9 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static './bootstrap/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static './bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static './bootstrap/css/bootstrap-theme.min.css' %}" />
     <link rel="stylesheet" href="{% static './stylesheets/application.css' %}" />
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
 
     <script src="{% static './javascript/jquery-2.1.4.min.js' %}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
@@ -17,7 +19,7 @@
     <title>Python Resource Wall</title>
   </head>
   <body>
-    <nav class="navbar navbar-inner">
+    <nav class="navbar navbar-inner inverse">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -26,18 +28,14 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">
-            <svg viewBox="0 0 128 128" preserveAspectRatio>
-              <path fill="#428bca" d="M49.33 62h29.159c8.117 0 14.511-6.868 14.511-15.019v-27.798c0-7.912-6.632-13.856-14.555-15.176-5.014-.835-10.195-1.215-15.187-1.191-4.99.023-9.612.448-13.805 1.191-12.355 2.181-14.453 6.751-14.453 15.176v10.817h29v4h-40.224000000000004c-8.484 0-15.914 5.108-18.237 14.811-2.681 11.12-2.8 17.919 0 29.53 2.075 8.642 7.03 14.659 15.515 14.659h9.946v-13.048c0-9.637 8.428-17.952 18.33-17.952zm-1.838-39.11c-3.026 0-5.478-2.479-5.478-5.545 0-3.079 2.451-5.581 5.478-5.581 3.015 0 5.479 2.502 5.479 5.581-.001 3.066-2.465 5.545-5.479 5.545zM122.281 48.811c-2.098-8.448-6.103-14.811-14.599-14.811h-10.682v12.981c0 10.05-8.794 18.019-18.511 18.019h-29.159c-7.988 0-14.33 7.326-14.33 15.326v27.8c0 7.91 6.745 12.564 14.462 14.834 9.242 2.717 17.994 3.208 29.051 0 7.349-2.129 14.487-6.411 14.487-14.834v-11.126h-29v-4h43.682c8.484 0 11.647-5.776 14.599-14.66 3.047-9.145 2.916-17.799 0-29.529zm-41.955 55.606c3.027 0 5.479 2.479 5.479 5.547 0 3.076-2.451 5.579-5.479 5.579-3.015 0-5.478-2.502-5.478-5.579 0-3.068 2.463-5.547 5.478-5.547z"></path>
-            </svg>
-            Python Resources</a>
+            <i class="devicon-python-plain"></i> Python Resources
+          </a>
         </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
             {% if user.is_authenticated %}
               <li><a href="{% url 'post_new' %}"><span class="glyphicon glyphicon-file"></span> Add New Article</a></li>
-              <!-- TODO: Add user profile -->
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ user.username }} </a></li>
               <li><a href="/accounts/logout/"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
             {% else %}
             <!-- TODO: Add signup -->

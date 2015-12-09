@@ -3,14 +3,18 @@
 
 {% block content %}
 <ul class="nav nav-pills margin-bottom-15" role="tablist">
-  <!-- <li role="presentation" class="active"><a href="#date" aria-controls="date" role="tab" data-toggle="tab">Order By Date</a></li>
-  <li role="presentation"><a href="#popularity" aria-controls="popularity" role="tab" data-toggle="tab">Order By Popularity</a></li> -->
+  <li role="presentation" class="active">
+    <a href="#date" aria-controls="date" role="tab" data-toggle="tab">Order By Date</a>
+  </li>
+  <li role="presentation">
+    <a href="#tag" aria-controls="tag" role="tab" data-toggle="tab">Order By Tag</a>
+  </li>
 </ul>
 
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="date">
     <div class="row">
-      {% for post in posts %}
+      {% for post in posts_by_date %}
         <div class="col-md-3">
           <div class="well text-center">
             <a href="{% url 'post_detail' pk=post.pk %}">
@@ -33,5 +37,30 @@
       {% endfor %}
       </div>
     </div>
+    <div role="tabpanel" class="tab-pane" id="tag">
+      <div class="row">
+        {% for post in posts_by_tag %}
+          <div class="col-md-3">
+            <div class="well text-center">
+              <a href="{% url 'post_detail' pk=post.pk %}">
+                <div class="overlay">
+                  <div class="overlay-center">
+                    <p>{{ post.summary|truncatechars:120 }}</p>
+                  </div>
+                </div>
+              </a>
+              <h3>{{ post.title|truncatechars:35 }}</h3>
+              <p>
+                @{{ post.author }} | {{ post.created_date }}
+              </p>
+              <p>
+                <span class="label label-primary">Comments: {{ post.comments.count }}</span>
+                <span class="label label-primary">Tag: {{ post.tag }}</span>
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
   </div>
 {% endblock %}

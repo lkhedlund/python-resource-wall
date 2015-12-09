@@ -1,6 +1,4 @@
 body {
-  /*background-color: #21263a;*/
-  background-color: #d3d3d3;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -28,13 +26,12 @@ body {
 
 header {
   text-align: center;
-  /*color: #FFFFFF;*/
-  color: black;
 }
 
 header .intro-text {
     padding-top: 100px;
     padding-bottom: 50px;
+    color: #FFFFFF;
 }
 
 header .intro-text .intro-lead-in {
@@ -52,22 +49,6 @@ header .intro-text .intro-heading {
     font-size: 50px;
     font-weight: 700;
     line-height: 50px;
-}
-
-.ltgray {
-  color: #d3d3d3;
-}
-
-.red {
-  color: #c0392b;
-}
-
-.blue {
-  color: #2980b9;
-}
-
-.yellow {
-  color: yellow;
 }
 
 .navbar-inner {
@@ -90,6 +71,7 @@ header .intro-text .intro-heading {
   height: 100%;
   width: 100%;
   background-color: #FFFFFF;
+  color: black;
   position: absolute;
   top: 0;
   left: 0;

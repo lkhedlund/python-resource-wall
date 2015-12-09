@@ -5,8 +5,9 @@ from .forms import PostForm, CommentForm
 
 # Create your views here.
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_date')
-    return render(request, 'posting_wall/post_list.html', { 'posts': posts })
+    posts_by_date = Post.objects.all().order_by('-created_date')
+    posts_by_tag = Post.objects.all().order_by('tag')
+    return render(request, 'posting_wall/post_list.html', { 'posts_by_date': posts_by_date, 'posts_by_tag': posts_by_tag })
 
 def post_detail(request, pk):
     post = get_object_or_404( Post, pk=pk )
