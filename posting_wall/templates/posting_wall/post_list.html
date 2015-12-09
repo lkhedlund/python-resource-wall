@@ -50,13 +50,13 @@
                 </div>
               </a>
               <h3>{{ post.title|truncatechars:35 }}</h3>
-              <p>
+              <div id="post-meta">
                 @{{ post.author }} | {{ post.created_date }}
-              </p>
-              <p>
+              </div>
+              <div id="post-labels">
                 <span class="label label-primary">Comments: {{ post.comments.count }}</span>
                 <span class="label label-primary">Tag: {{ post.tag }}</span>
-              </p>
+              </div>
             </div>
           </div>
         {% endfor %}
