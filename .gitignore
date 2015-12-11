@@ -62,3 +62,6 @@ target/
 
 # Old Sinatra Files
 sinatra-old/
+
+# Local Settings
+*/local_settings.py
