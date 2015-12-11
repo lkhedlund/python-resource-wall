@@ -30,7 +30,7 @@
           <p>
             <strong>@{{ comment.author }}</strong> on {{ comment.created_date }}</p>
           <p>
-            {{ comment.text|urlify }}
+            {{ comment.text|urlize }}
           </p>
           {% empty %}
           <p>
