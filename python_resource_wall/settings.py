@@ -6,6 +6,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['lkhedlund.pythonanywhere.com']
 
+SECRET_KEY = 'fxm@76)6s((71yv!^ssov2km@zqban%2@(8y*$^h#kth^7swu6'
 
 # Application definition
 
