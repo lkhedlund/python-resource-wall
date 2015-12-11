@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Post
 from .forms import PostForm, CommentForm
 
@@ -19,6 +21,7 @@ def post_detail(request, pk):
             comment.author = request.user
             comment.post = post
             comment.save()
+            return HttpResponseRedirect(reverse('posting_wall.views.post_detail', args=(post.id,)))
     else:
         form = CommentForm()
     return render(request, 'posting_wall/post_detail.html', { 'post': post, 'comments': comments, 'form': form })

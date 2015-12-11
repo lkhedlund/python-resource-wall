@@ -1,0 +1,130 @@
+<div class="row row-centered margin-bottom-15">
+  <div class="col-md-4 col-centered">
+    <div class="row row-centered">
+      <div class="col-md-12 col-centered avatar-position">
+          <img src="<%= @user.gravitar %>" class="center-block well avatar-background" />
+      </div>
+    </div>
+    <div class="row row-centered well user-container">
+      <div class="col-md-12 col-centered">
+        <h2 class="text-center"><%= @user.username %></h2>
+      </div>
+    </div>
+    <div class="row row-centered">
+      <div class="col-md-4 like-col-centered likes-background">
+        <h4 class="text-center"><span class="red glyphicon glyphicon-heart"></span> <%= @total_likes %></h4>
+      </div>
+      <div class="col-md-8 score-col-centered score-background">
+        <h4 class="text-center"><span class="yellow glyphicon glyphicon-star"></span> <%= @user_rank %></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<% if current_user.id == @user.id %>
+<ul class="nav nav-pills margin-bottom-15" role="tablist">
+  <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">Articles</a></li>
+  <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab" data-toggle="tab">Bookmarks</a></li>
+</ul>
+<% else %>
+<ul class="nav nav-pills margin-bottom-15" role="tablist">
+  <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">Articles</a></li>
+</ul>
+<% end %>
+</div>
+</div>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="articles">
+    <div class="row">
+      <% @user.articles.each do |article| %>
+        <div class="col-md-3">
+          <div class="well text-center">
+            <a href="/articles/<%= article.id %>">
+            <div class="square" style="background-image:url('<%= article.image %>')">
+            <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(120) %></p></div></div>
+            </div></a>
+            <h4>
+              <% if current_user %>
+                <% if current_user && current_user.hasnt_liked?(article) %>
+                  <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
+                    <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+                  </form>
+                <% else %>
+                  <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                  </form>
+                <% end %>
+                <% if current_user && current_user.hasnt_bookmarked?(article) %>
+                  <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
+                    <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+                  </form>
+                <% else %>
+                 <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
+                    <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+                  </form>
+                <% end %>
+              <% end %>
+            </h4>
+            <h4 style="height: 90px;"><%= article.title %></h4>
+              <p>
+              <% if current_user %>
+                <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
+                <% else %>
+                <%= User.find(article.user_id).username %>
+                <% end %> 
+                | <%= article.created_at.strftime("%m.%d.%y") %></p>
+              <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="bookmarks">
+    <div class="row">
+      <% @bookmarks.each do |article| %>
+        <div class="col-md-3">
+          <div class="well text-center">
+            <a href="/articles/<%= article.id %>">
+            <div class="square" style="background-image:url('<%= article.image %>')">
+            <div class="overlay"><div class="overlay-center"><p><%= article.summary.truncate(120) %></p></div></div>
+            </div></a>
+            <h4>
+              <% if current_user %>
+                <% if current_user && current_user.hasnt_liked?(article) %>
+                  <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes">
+                    <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-heart"></span></button>
+                  </form>
+                <% else %>
+                  <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/likes/delete">
+                      <button class="icon-button" type="submit"><span class="red glyphicon glyphicon-heart"></span></button>
+                  </form>
+                <% end %>
+                <% if current_user && current_user.hasnt_bookmarked?(article) %>
+                  <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks">
+                    <button class="icon-button" type="submit"><span class="ltgray glyphicon glyphicon-bookmark"></span></button>
+                  </form>
+                <% else %>
+                 <form style="display: inline;" method="POST" action="/articles/<%= article.id %>/bookmarks/delete">
+                    <button class="icon-button" type="submit"><span class="blue glyphicon glyphicon-bookmark"></span></button>
+                  </form>
+                <% end %>
+              <% end %>
+            </h4>
+            <h4 style="height: 90px;"><%= article.title %></h4>
+              <p>
+              <% if current_user %>
+                <a href="/users/<%= article.user_id %>">@<%= User.find(article.user_id).username %></a>
+                <% else %>
+                <%= User.find(article.user_id).username %>
+                <% end %> 
+                | <%= article.created_at.strftime("%m.%d.%y") %></p>
+              <p><span class="label label-primary">Likes: <%= article.likes.count %></span> <span class="label label-primary">Comments: <%= article.comments.count %></span></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

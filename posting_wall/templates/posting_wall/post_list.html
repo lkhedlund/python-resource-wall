@@ -24,9 +24,9 @@
                 </div>
               </div>
             </a>
-            <h3>{{ post.title|truncatechars:35 }}</h3>
+            <h3>{{ post.title|truncatechars:30 }}</h3>
             <p>
-              @{{ post.author }} | {{ post.created_date }}
+              @{{ post.author }} | {{ post.created_date|date:"M d y" }}
             </p>
             <p>
               <span class="label label-primary">Comments: {{ post.comments.count }}</span>
@@ -49,9 +49,9 @@
                   </div>
                 </div>
               </a>
-              <h3>{{ post.title|truncatechars:35 }}</h3>
+              <h3>{{ post.title|truncatechars:30 }}</h3>
               <div id="post-meta">
-                @{{ post.author }} | {{ post.created_date }}
+                @{{ post.author }} | {{ post.created_date|date:"M d y" }}
               </div>
               <div id="post-labels">
                 <span class="label label-primary">Comments: {{ post.comments.count }}</span>
