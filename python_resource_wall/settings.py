@@ -2,11 +2,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'fxm@76)6s((71yv!^ssov2km@zqban%2@(8y*$^h#kth^7swu6'
-
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lkhedlund.pythonanywhere.com']
 
 
 # Application definition
